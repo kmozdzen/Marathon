@@ -1,13 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap');
+@import "../style/Style.css";
 
 body > #root > div, .base-container{
     height: 100vh;
-}
-
-*
-{
-    font-family: 'Montserrat', sans-serif;
 }
 
 .base-container
@@ -18,22 +12,37 @@ body > #root > div, .base-container{
 .home-container
 {
     display: flex;
-    justify-content: end;
+   
+    height: 90vh;
+}
+
+.left-side
+{
+    width: 50%;
+}
+
+.right-side
+{
+    width: 50%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 
 .buttons
 {
-    width: 400px;
-    margin-top: 200px;
-    margin-right: 300px;
-}
-a
-{
-    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin: auto;  
+    gap: 20px;
 }
 
-h1
+.buttons button
 {
-    margin-left: 2em;
-    color: red !important;
+    width: 25vw;
+    font-size: 2em;
+    border-radius: 30px;
 }
+

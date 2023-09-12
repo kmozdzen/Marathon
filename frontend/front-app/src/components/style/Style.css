@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+*
+{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h1
+{
+    font-family: 'Montserrat', sans-serif;
+    color: red !important;
+    font-weight: 600 !important;
+}
+
+.data-form .sign-in-button, .buttons .sign-in-button
+{
+    border: 3px solid white;
+}
+
+a
+{
+    text-decoration: none !important;
+}
+
+.data-form .register-button
+{
+    margin: auto;
+    width: 12vw;
+    height: 5.5vh;
+    border-radius: 20px;
+    
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}

@@ -1,0 +1,81 @@
+@import "../style/Style.css";
+
+.col
+{
+    height: 100vh;
+}
+
+.brand-name-side
+{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-in-side
+{
+    background-color: red;
+}
+
+.brand-name-side a
+{
+    margin: auto;
+}
+
+.site-name
+{
+    font-size: 4rem;    
+}
+
+
+.sign-in-side
+{
+    display: flex;
+    justify-content: center;
+}
+
+form
+{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 30vw;
+}
+
+.row
+{
+    justify-content: center;
+}
+
+.data-form .input-style
+{
+    border-radius: 30px;
+    border: 3px solid #F66;
+    background-color: #C00;
+    color: white;
+    height: 7vh;
+    font-size: 2rem;
+}
+
+.data-form .form-control::placeholder
+{
+    color: white ;
+    opacity: 60%;
+}
+
+.data-form .sign-in-button
+{
+    margin: auto;
+    width: 12vw;
+    height: 5.5vh;
+    border-radius: 20px;
+    
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.valid-feedback, form-control
+{
+    color: white !important;
+}
