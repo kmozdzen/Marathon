@@ -1,19 +1,8 @@
 @import "../style/Style.css";
 
-body > #root > div, .base-container{
-    height: 100vh;
-}
-
 .base-container
 {
     background-image: url('../../../public/images/start-screen.jpg');
-}
-
-.home-container
-{
-    display: flex;
-   
-    height: 90vh;
 }
 
 .left-side

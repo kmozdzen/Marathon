@@ -1,0 +1,36 @@
+@import "../style/Style.css";
+
+.stats-content
+{
+    height: 91.5vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.stats-content .container
+{
+    margin: auto;
+}
+
+.h2-style
+{
+    color: white;
+}
+
+.p-style
+{
+    margin: 0px;
+    font-weight: 600;
+}
+
+.stats-col-style
+{
+    display: flex;
+    text-align: center;
+}
+
+.stats-data
+{
+    margin: auto;
+}
