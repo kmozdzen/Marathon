@@ -1,0 +1,52 @@
+@import "../style/Style.css";
+
+.questions-container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.questions-block
+{
+    width: 750px;
+    height: 650px;
+    border-radius: 30px;
+    background-color: black;
+
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+}
+
+.questions
+{
+    font-size: 1.5rem;
+    margin: auto;
+}
+
+.questions form
+{
+    color: white;
+}
+
+.questions legend
+{
+    margin: auto;   
+}
+
+.questions .form-label
+{
+    margin-bottom: 30px;
+}
+
+.questions .answers .form-check
+{
+    margin-bottom: 10px ;
+}
+
+.questions .form-check-input:checked
+{
+    background-color: red;
+    border-color: red;
+}

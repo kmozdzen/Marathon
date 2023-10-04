@@ -68,9 +68,9 @@ const YourPlan = () => {
                             <h5>{runDays[1]}</h5>
                             <div className="carousel-stats">
                                 <h6>Run</h6>
-                                <p>Distance: 10km</p>
-                                <p>Time: 50min</p>
-                                <p>Speed: 6km/h</p>
+                                <p>Distance: 14km</p>
+                                <p>Time: 53min</p>
+                                <p>Speed: 5km/h</p>
                             </div>
                         </Carousel.Caption>
                     </Carousel.Item>
@@ -84,9 +84,9 @@ const YourPlan = () => {
                             <h5>{runDays[2]}</h5>
                             <div className="carousel-stats">
                                 <h6>Run</h6>
-                                <p>Distance: 10km</p>
-                                <p>Time: 50min</p>
-                                <p>Speed: 6km/h</p>
+                                <p>Distance: 5km</p>
+                                <p>Time: 40min</p>
+                                <p>Speed: 3km/h</p>
                             </div>
                         </Carousel.Caption>
                     </Carousel.Item>

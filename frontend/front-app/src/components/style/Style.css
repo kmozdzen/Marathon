@@ -7,7 +7,10 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
-body > #root > div, .base-container, .your-plan-container{
+body > #root > div, .base-container, 
+.your-plan-container, .stats-container,
+.questions-container
+{
     height: 100vh;
 }
 
@@ -43,4 +46,14 @@ a
     display: flex;
    
     height: 90vh;
+}
+
+.your-plan-container, .stats-container
+{
+    background-color: #FF6666;
+}
+
+.questions-container
+{
+    background-color: red;
 }

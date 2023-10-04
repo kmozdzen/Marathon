@@ -4,6 +4,8 @@ import Home from "./components/home/Home";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import YourPlan from "./components/yourplan/YourPlan";
+import Stats from "./components/stats/Stats";
+import Questions from "./components/questions/Questions";
 
 function App() {
   return (
@@ -24,6 +26,14 @@ function App() {
             <Route 
                 path="/yourplan" 
                 element={<YourPlan/>}>
+            </Route>
+            <Route 
+                path="/stats" 
+                element={<Stats/>}>
+            </Route>
+            <Route 
+                path="/questions" 
+                element={<Questions/>}>
             </Route>
         </Routes>
     </div>
