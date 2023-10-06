@@ -1,8 +1,12 @@
 package com.kmozdzen.marathon.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +25,8 @@ public class User {
 
     @Column(name = "name")
     private String name;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "user",  cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Answer> answers;
 }
