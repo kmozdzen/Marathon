@@ -8,19 +8,62 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Container from "react-bootstrap/Container";
 
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 const Register = () =>{
     const [validated, setValidated] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [noEmail, setNoEmail] = useState(false);
+    const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        login();
+        setValidated(true);
+    };
 
-    setValidated(true);
-  };
-
+    async function login(event) {
+        console.log(email, password);   
+        try {
+          await axios.post("http://localhost:8080/api/auth/authenticate", {
+            email: email,
+            password: password,
+            }).then((res) =>
+            {
+             console.log(res.data.token);
+             if(res.data.message === "Login success")
+             {
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('email', res.data.email);
+                localStorage.setItem('name', res.data.name);
+                navigate('/yourplan')
+             }
+             if(res.data.message === "Email not exits")
+             {
+                setError(false);
+                setNoEmail(true);
+             }else{
+                setNoEmail(false);
+                setError(true);
+             }
+             
+          }, fail => {
+           console.error(fail); // Error!
+    });
+            }
+    
+            catch (err) {
+            alert(err);
+            }
+        
+        }
 
     return(
         <Container fluid>
@@ -35,8 +78,12 @@ const Register = () =>{
                                 <Form.Control
                                     className="input-style"
                                     required
-                                    type="text"
-                                    placeholder="Login"
+                                    type="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(event) => {
+                                        setEmail(event.target.value);
+                                    }}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
@@ -48,6 +95,10 @@ const Register = () =>{
                                     required
                                     type="password"
                                     placeholder="Password"
+                                    value={password}
+                                    onChange={(event) => {
+                                        setPassword(event.target.value);
+                                    }}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
