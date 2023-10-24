@@ -7,7 +7,7 @@ import YourPlan from "./components/yourplan/YourPlan";
 import Stats from "./components/stats/Stats";
 import Questions from "./components/questions/Questions";
 import { ProtectedRoute } from './components/authentication/ProtectedRoute';
-import { IsPlan } from "./components/isPlan/isPlan";
+import { IsPlan } from "./components/isPlan/IsPlan";
 
 function App() {
   return (
@@ -39,15 +39,9 @@ function App() {
                 path="/stats" 
                 element={
                             <ProtectedRoute>
-                                <Stats />
-                            </ProtectedRoute>
-                        }>
-            </Route>
-            <Route 
-                path="/questions" 
-                element={
-                            <ProtectedRoute>
-                                <Questions />
+                                <IsPlan>
+                                    <Stats /> 
+                                </IsPlan>
                             </ProtectedRoute>
                         }>
             </Route>

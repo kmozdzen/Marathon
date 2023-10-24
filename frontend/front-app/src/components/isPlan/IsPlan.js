@@ -1,23 +1,29 @@
-import { Navigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
+import Questions from "../questions/Questions";
 
 export const IsPlan = ({ children }) => {
-    const [IsPlanAdded, setIsPlanAdded] = useState(false);
-    
-    axios.post('http://localhost:8080/api/your-plan/is-added' + localStorage.getItem("token"))
-        .then((res) =>
-        {
-        if(res.data.isPlan){
-            setIsPlanAdded(true);
-        }
-        }, fail => {
-        console.error(fail); // Error!
-    });
+  const [isPlanAdded, setIsPlanAdded] = useState(false);
 
-  if(IsPlanAdded){
-    return children
-  }
+  //it checks if there is any plan given
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/yourplan/isPlan/' + localStorage.getItem("email"))
+      .then((res) => {
+        setIsPlanAdded(res.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []); 
+  
+  useEffect(() => {
+  }, [isPlanAdded]);
 
-  return <Navigate to="/questions" />;
+//it goes to childred page, if added
+if (isPlanAdded) {
+  return children;
+}
+
+//else generete new plan in questions
+return <Questions />
 };

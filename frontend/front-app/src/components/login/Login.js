@@ -10,6 +10,7 @@ import Container from "react-bootstrap/Container";
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import YourPlan from "../yourplan/YourPlan";
 
 const Register = () =>{
     const [validated, setValidated] = useState(false);
@@ -43,7 +44,7 @@ const Register = () =>{
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('name', res.data.name);
-                navigate('/yourplan')
+                return <YourPlan/>
              }
              if(res.data.message === "Email not exits")
              {

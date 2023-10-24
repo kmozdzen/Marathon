@@ -37,7 +37,9 @@ public class DefaultSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(
                         "/api/auth/**",
-                        "/api/question/"
+                        "/api/question/**",
+                        "/api/answer/**",
+                        "/api/yourplan/**"
                 )
                 .permitAll()
                 .requestMatchers(
