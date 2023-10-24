@@ -6,6 +6,8 @@ import Register from "./components/register/Register";
 import YourPlan from "./components/yourplan/YourPlan";
 import Stats from "./components/stats/Stats";
 import Questions from "./components/questions/Questions";
+import { ProtectedRoute } from './components/authentication/ProtectedRoute';
+import { IsPlan } from "./components/isPlan/IsPlan";
 
 function App() {
   return (
@@ -25,15 +27,23 @@ function App() {
             </Route>
             <Route 
                 path="/yourplan" 
-                element={<YourPlan/>}>
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <YourPlan />
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
             </Route>
             <Route 
                 path="/stats" 
-                element={<Stats/>}>
-            </Route>
-            <Route 
-                path="/questions" 
-                element={<Questions/>}>
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <Stats /> 
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
             </Route>
         </Routes>
     </div>

@@ -8,19 +8,47 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Container from "react-bootstrap/Container";
 
+import axios from 'axios';
+
 const Register = () =>{
     const [validated, setValidated] = useState(false);
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        register();
+        setValidated(true);
+    };
+    
+    async function register(event) {
+        console.log(email, password, name);
+        try {
+          await axios.post("http://localhost:8080/api/auth/register", {
+          email: email,
+          password: password,
+          name: name,
+          }).then((res) => {
+            if(res.data.message === "Success"){
+                alert("Success");
+            }else{
 
-    setValidated(true);
-  };
-
+            }
+          }, fail => {
+            console.error(fail); // Error!
+        });
+                }
+        
+                catch (err) {
+                alert(err);
+                }
+            
+            }
 
     return(
         <Container fluid>
@@ -35,8 +63,12 @@ const Register = () =>{
                                 <Form.Control
                                     className="input-style"
                                     required
-                                    type="text"
-                                    placeholder="Login"
+                                    type="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(event) => {
+                                        setEmail(event.target.value);
+                                    }}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
@@ -46,8 +78,12 @@ const Register = () =>{
                                 <Form.Control
                                     className="input-style"
                                     required
-                                    type="email"
-                                    placeholder="Email"
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(event) => {
+                                        setPassword(event.target.value);
+                                    }}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
@@ -55,10 +91,14 @@ const Register = () =>{
                         <Row className="mb-6">
                             <Form.Group as={Col} md="10" controlId="validationCustom03">
                                 <Form.Control
-                                    required
-                                    type="password"
-                                    placeholder="Password"
                                     className="input-style"
+                                    required
+                                    type="text"
+                                    placeholder="Name"
+                                    value={name}
+                                    onChange={(event) => {
+                                        setName(event.target.value);
+                                    }}
                                 />
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
