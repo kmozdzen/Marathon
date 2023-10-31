@@ -48,9 +48,14 @@ a
     height: 90vh;
 }
 
-.your-plan-container, .stats-container
+.your-plan-container
 {
     background-color: #FF6666;
+}
+
+.stats-container
+{
+    background-color: red;
 }
 
 .questions-container

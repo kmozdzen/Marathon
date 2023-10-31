@@ -11,6 +11,8 @@ import Container from "react-bootstrap/Container";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import YourPlan from "../yourplan/YourPlan";
+import { IsPlan } from "../isPlan/IsPlan";
+import Footer from "../footer/Footer";
 
 const Register = () =>{
     const [validated, setValidated] = useState(false);
@@ -23,15 +25,18 @@ const Register = () =>{
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
         }
-        login();
+        else{
+          login(event);
+        }
+    
         setValidated(true);
-    };
+      };
 
     async function login(event) {
-        console.log(email, password);   
+        event.preventDefault();
         try {
           await axios.post("http://localhost:8080/api/auth/authenticate", {
             email: email,
@@ -44,7 +49,7 @@ const Register = () =>{
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('name', res.data.name);
-                return <YourPlan/>
+                navigate("/yourplan")
              }
              if(res.data.message === "Email not exits")
              {
@@ -67,6 +72,7 @@ const Register = () =>{
         }
 
     return(
+        <div>
         <Container fluid>
             <Row>
                 <Col className="brand-name-side">
@@ -109,6 +115,8 @@ const Register = () =>{
                 </Col>
             </Row>
         </Container>
+        <Footer />
+        </div>
     );
 }
 

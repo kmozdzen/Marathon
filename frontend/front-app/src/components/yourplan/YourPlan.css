@@ -8,19 +8,43 @@
     text-align: center;
 }
 
-.a
+.calendar-panel
 {
     margin: auto;
+    margin-right: 0;
 }
+
 .carousel-style
-{
+{    
     width: 500px;
     height: 700px;
 
     margin: auto;
+    margin-left: 10%;
     
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.calendar-style{
+    margin-top: 30px;
+}
+
+.calendar-buttons
+{
+    display: flex;
+}
+
+.calendar-buttons button
+{
+    margin-right: 10px;
+
+}
+
+.react-calendar-style
+{
+    margin: auto;
+    border-radius: 30px;
 }
 
 .carousel-style .carousel-image-style
@@ -57,4 +81,15 @@
 .calendar-style .data-picker
 {
     color: black;
+}
+
+.react-calendar__tile:active, 
+.react-calendar__tile:enabled:focus {
+    background-color: red !important;
+  }
+
+.react-calendar__tile--active:enabled, 
+.react-calendar__tile--active:hover, 
+.react-calendar__tile--active:focus {
+    background-color: red !important; 
 }

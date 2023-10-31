@@ -3,6 +3,7 @@
 .base-container
 {
     background-image: url('../../../public/images/start-screen.jpg');
+    height: 90vh;
 }
 
 .left-side
@@ -14,8 +15,16 @@
 {
     width: 50%;
     display: flex;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
+}
+
+.right-side h1
+{
+    font-size: 5rem; 
+    margin: auto;
+    margin-bottom: 0;
 }
 
 .buttons
@@ -24,7 +33,8 @@
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    margin: auto;  
+    margin: auto;
+    margin-top: 0;  
     gap: 20px;
 }
 
@@ -35,3 +45,15 @@
     border-radius: 30px;
 }
 
+h1
+{
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.quote
+{
+    color: w;
+    font-size: 3rem;
+    width: 70%;
+    margin: 5vh auto;
+}

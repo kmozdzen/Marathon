@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Container from "react-bootstrap/Container";
 
 import axios from 'axios';
+import Footer from "../footer/Footer";
 
 const Register = () =>{
     const [validated, setValidated] = useState(false);
@@ -19,15 +20,18 @@ const Register = () =>{
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
         }
-        register();
+        else{
+          register(event);
+        }
+    
         setValidated(true);
-    };
+      };
     
     async function register(event) {
-        console.log(email, password, name);
+        event.preventDefault();
         try {
           await axios.post("http://localhost:8080/api/auth/register", {
           email: email,
@@ -51,6 +55,7 @@ const Register = () =>{
             }
 
     return(
+        <div>
         <Container fluid>
             <Row>
                 <Col className="brand-name-side">
@@ -108,6 +113,8 @@ const Register = () =>{
                 </Col>
             </Row>
         </Container>
+        <Footer />
+        </div>
     );
 }
 

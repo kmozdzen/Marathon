@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect  } from "react";
 
 import Header from "../navbar/Header";
+import YourPlan from "../yourplan/YourPlan"
 
 import axios from "axios";
 
@@ -73,7 +74,7 @@ const Questions = () => {
                         }
                     )
                     .then((res) => {
-                        console.log(res.data)
+                        window.location.reload(false);
                     })
                     .catch(error => {
                           console.error(error);
