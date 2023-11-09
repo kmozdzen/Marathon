@@ -16,6 +16,9 @@ public class Run {
     @Column(name = "id_run")
     private int idRun;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "distance")
     private float distance;
 
@@ -24,6 +27,12 @@ public class Run {
 
     @Column(name = "pace")
     private LocalTime pace;
+
+    @Column(name = "run_time")
+    private LocalTime runTime;
+
+    @Column(name = "walk_time")
+    private LocalTime walkTime;
 
     @Column(name = "date")
     private LocalDate date;

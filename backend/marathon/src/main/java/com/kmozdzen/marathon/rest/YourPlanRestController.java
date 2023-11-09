@@ -6,6 +6,9 @@ import com.kmozdzen.marathon.service.yourplanService.YourPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/yourplan")
@@ -26,6 +29,13 @@ public class YourPlanRestController {
 
     @PostMapping("/create/{email}")
     private YourPlan create(@PathVariable("email") String email, @RequestBody AnswersResponse answersResponse){
-        return yourPlanService.create(email ,answersResponse);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //String yyyy-MM-dd to LocalDate
+        LocalDate formattedDate = LocalDate.parse(answersResponse.getRaceDate(), formatter);
+        return yourPlanService.create(email ,answersResponse, formattedDate);
+    }
+
+    @DeleteMapping("/remove/{id}")
+    public void removePlan(@PathVariable("id") int id){
+        yourPlanService.remove(id);
     }
 }
