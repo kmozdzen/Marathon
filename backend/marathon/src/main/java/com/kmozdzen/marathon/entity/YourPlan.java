@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,6 +18,9 @@ public class YourPlan {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "race_date")
+    private LocalDate raceDate;
 
     @JsonIgnore
     @OneToOne

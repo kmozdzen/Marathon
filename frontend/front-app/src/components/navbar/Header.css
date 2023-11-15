@@ -1,10 +1,18 @@
 #site-name-id
 {
-    margin-left: 2em;
+    margin-left: 2rem;
+    margin-bottom: 0;
 }
 
 .navbar-header-style .nav-link-header-style
 {
     color: white;
     font-size: 1.5rem;
+}
+
+.logout-icon-style
+{
+    margin: 10px;
+    color: white;
+    font-size: 2rem;
 }

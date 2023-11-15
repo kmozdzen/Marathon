@@ -1,0 +1,23 @@
+@import "../style/Style.css";
+
+.footer-container
+{
+    height: 20vh;
+    background-color: black;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name
+{
+    color: red;
+    margin: auto;
+}
+
+.author-name
+{
+    font-size: 1rem;
+    margin: auto;
+}

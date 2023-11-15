@@ -2,96 +2,168 @@ import "./YourPlan.css";
 import React from "react";
 
 import Header from "../navbar/Header";
-import Carousel from 'react-bootstrap/Carousel';
-import Button from "react-bootstrap/esm/Button";
+import { Carousel, Button } from 'react-bootstrap';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
-import { useState } from "react";
+import { useState, useEffect, useRef  } from "react";
+import axios from "axios";
+import Stats from "../stats/Stats";
+import Footer from "../footer/Footer";
 
 const YourPlan = () => {
-    const [runDays, setRunDays] = useState([]);
-    const [isOpen, setIsOpen] = useState(false);
+    const [runDays, setRunDays] = useState();
+    const [firstDay, setFirstDay] = useState();
+    const [lastDay, setLastDay] = useState();
+    const [carouselActiveIndex, setCarouselActiveIndex] = useState(0); // Initialize with 0
+    const containerRef = useRef(null);
 
-    const handleOnClick1 = () =>{
-        const defaultDays1 = [26, 27, 28];
-        setRunDays(defaultDays1);
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/run/current-days/' + localStorage.getItem("email"))
+          .then((res) => {
+                //console.log(res.data)
+                setRunDays(res.data)    
+          })
+          .catch(error => {
+                console.error(error);
+          });
+
+          axios.get('http://localhost:8080/api/run/get-last-date/' + localStorage.getItem("email") )
+          .then((res) => {
+                setLastDay(res.data.date)    
+          })
+          .catch(error => {
+                console.error(error);
+          });
+
+          axios.get('http://localhost:8080/api/run/get-first-date/' + localStorage.getItem("email") )
+          .then((res) => {
+                setFirstDay(res.data.date)    
+          })
+          .catch(error => {
+                console.error(error);
+          });
+    }, []);
+
+    const changeCarouselItem = (date) => {
+        const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+        axios.get('http://localhost:8080/api/run/' + localStorage.getItem("email") + '/' + formattedDate)
+          .then((res) => {
+                setRunDays(res.data);
+                const indexToSet = res.data.findIndex(run => run.date === formattedDate);
+                if (indexToSet !== -1) {
+                    setCarouselActiveIndex(indexToSet);
+                }
+          })
+          .catch(error => {
+                console.error(error);
+          });
+        }
+    const changeSlideOnCarousel = (day) => {
+        let indexToSet = 0;
+
+        if (day === "Wt") {
+            indexToSet = 1;
+        } else if (day === "Sr") {
+            indexToSet = 2;
+        } else if (day === "Cz") {
+            indexToSet = 3;
+        } else if (day === "Pi") {
+            indexToSet = 4;
+        } else if (day === "So") {
+            indexToSet = 5;
+        } else if (day === "Ni") {
+            indexToSet = 6;
+        }
+
+        let slide = 0; //number of slide
+        runDays.forEach(day => {
+            const dayOfWeek = new Date(day.date).getDay();
+            const adjustedDayOfWeek = (dayOfWeek + 6) % 7; // adjusting to Monday as 0
+            if(adjustedDayOfWeek === indexToSet){
+                setCarouselActiveIndex(slide);
+            }
+            slide++;
+        });
     }
 
-    const handleOnClick2 = () =>{
-        const defaultDays2 = [1, 2, 3];
-        setRunDays(defaultDays2);
-    }
-
-    const handleOnClick3 = () =>{
-        const defaultDays3 = [7, 8, 9];
-        setRunDays(defaultDays3);
-    }
-    
     return(
-        <div className="your-plan-container">
-            <Header />
-            <div className="calendar-container">
-                <div className="a">
-                    <Button onClick={handleOnClick1}>26-28</Button>
-                    <Button onClick={handleOnClick2}>1-3</Button>
-                    <Button onClick={handleOnClick3}>7-9</Button>
-                    <div className="calendar-style">
-                        <DatePicker label="Basic date picker" />
+        <div>
+            <div className="your-plan-container">
+                <Header containerRef={containerRef}/>
+                <div className="calendar-container">
+                    <div className="calendar-panel">
+                        <div>
+                            <h2>Tydzień:</h2>
+                        </div>
+                        <div className="calendar-buttons">
+                            <Button onClick={() => changeSlideOnCarousel("Po")} className="btn btn-dark">Po</Button>
+                            <Button onClick={() => changeSlideOnCarousel("Wt")} className="btn btn-dark">Wt</Button>
+                            <Button onClick={() => changeSlideOnCarousel("Sr")} className="btn btn-dark">Sr</Button>
+                            <Button onClick={() => changeSlideOnCarousel("Cz")} className="btn btn-dark">Cz</Button>
+                            <Button onClick={() => changeSlideOnCarousel("Pi")} className="btn btn-dark">Pi</Button>
+                            <Button onClick={() => changeSlideOnCarousel("So")} className="btn btn-dark">So</Button>
+                            <Button onClick={() => changeSlideOnCarousel("Ni")} className="btn btn-dark">Ni</Button>
+                        </div>
+                        <div className="calendar-style">
+                            <Calendar 
+                                className="react-calendar-style"
+                                onChange={(date) => changeCarouselItem(date)}
+                                minDate={new Date(firstDay)}
+                                maxDate={new Date(lastDay)}
+                            />
+                        </div>
                     </div>
+                    <Carousel 
+                    fade 
+                    interval={null}
+                    data-bs-theme="dark"                                                                                        
+                    className="carousel-style" 
+                    activeIndex={carouselActiveIndex}
+                    onSelect={(index) => setCarouselActiveIndex(index)}
+                    >
+                        {runDays?.map((run) => (
+                            <Carousel.Item key={run.idRun} className="carousel-item-style">
+                                <img
+                                    className="d-block w-100 carousel-image-style"
+                                    src={`images/marathon-${Math.floor(Math.random() * 3) + 1}.jpg`}
+                                    alt="Slide"
+                                />
+                                <Carousel.Caption className="carousel-caption-style">
+                                    <h5>{run.date}</h5>
+                                    {(() => {
+                                        if(run.name === "Długi bieg") {
+                                            return <div className="carousel-stats">
+                                                        <h6 className="run-name">{run.name}</h6>
+                                                        <p>Dystans: {run.distance} km</p>
+                                                        <p>Prędkość: {run.pace} min/km</p>
+                                                    </div> 
+                                        } else if(run.name === "Dzień wolny" ){
+                                            return <h6 style={{margin: "auto"}} className="run-name">{run.name}</h6>
+                                        } else if(run.name === "Marsz" ){
+                                            return <div className="carousel-stats">
+                                                        <h6 className="run-name">{run.name}</h6>
+                                                        <p>Czas: {run.time}</p>
+                                                    </div> 
+                                        } else if(run.name === "Bieg/Marsz" ){
+                                            return <div className="carousel-stats">
+                                                        <h6 className="run-name">{run.name}</h6>
+                                                        <p>Czas: {run.time}</p>
+                                                        <p>Czas biegu: {run.walkTime}</p>
+                                                        <p>Czas marszu: {run.runTime}</p>
+                                                    </div> 
+                                        }
+                                    }
+                                        )()} 
+                                </Carousel.Caption>
+                                
+                            </Carousel.Item>    
+                        ))}    
+                    </Carousel>
+                    
                 </div>
-                <Carousel fade data-bs-theme="dark" className="carousel-style">
-                    <Carousel.Item className="carousel-item-style">
-                        <img
-                        className="d-block w-100 carousel-image-style"
-                        src="images/marathon-1.jpg"
-                        alt="First slide"
-                        />
-                        <Carousel.Caption className="carousel-caption-style">
-                            <h5>{runDays[0]}</h5>
-                            <div className="carousel-stats">
-                                <h6>Run</h6>
-                                <p>Distance: 10km</p>
-                                <p>Time: 50min</p>
-                                <p>Speed: 6km/h</p>
-                            </div>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item className="carousel-item-style">
-                        <img
-                        className="d-block w-100 carousel-image-style"
-                        src="images/marathon-2.jpg"
-                        alt="Second slide"
-                        />
-                        <Carousel.Caption className="carousel-caption-style">
-                            <h5>{runDays[1]}</h5>
-                            <div className="carousel-stats">
-                                <h6>Run</h6>
-                                <p>Distance: 14km</p>
-                                <p>Time: 53min</p>
-                                <p>Speed: 5km/h</p>
-                            </div>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item className="carousel-item-style">
-                        <img
-                        className="d-block w-100 carousel-image-style"
-                        src="images/marathon-3.jpg"
-                        alt="Third slide"
-                        />
-                        <Carousel.Caption className="carousel-caption-style">
-                            <h5>{runDays[2]}</h5>
-                            <div className="carousel-stats">
-                                <h6>Run</h6>
-                                <p>Distance: 5km</p>
-                                <p>Time: 40min</p>
-                                <p>Speed: 3km/h</p>
-                            </div>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
             </div>
+            <Stats ref={containerRef} />
         </div>
     );
 }

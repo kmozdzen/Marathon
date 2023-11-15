@@ -9,10 +9,9 @@ import Col from 'react-bootstrap/Col';
 
 import { useState } from "react";
 
-const YourPlan = () => {
+const Stats = React.forwardRef((props, ref) => {
     return(
-        <div className="stats-container">
-            <Header />
+        <div ref={ref} className="stats-container">
             <div className="stats-content">
             <Container>
                 <Row >
@@ -47,6 +46,6 @@ const YourPlan = () => {
             </div>
         </div>
     );
-}
+});
 
-export default YourPlan;
+export default Stats;

@@ -39,7 +39,8 @@ public class DefaultSecurityConfig {
                         "/api/auth/**",
                         "/api/question/**",
                         "/api/answer/**",
-                        "/api/yourplan/**"
+                        "/api/yourplan/**",
+                        "/api/run/**"
                 )
                 .permitAll()
                 .requestMatchers(

@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Container from "react-bootstrap/Container";
 
 import axios from 'axios';
+import Footer from "../footer/Footer";
 
 const Register = () =>{
     const [validated, setValidated] = useState(false);
@@ -19,15 +20,18 @@ const Register = () =>{
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+          event.preventDefault();
+          event.stopPropagation();
         }
-        register();
+        else{
+          register(event);
+        }
+    
         setValidated(true);
-    };
+      };
     
     async function register(event) {
-        console.log(email, password, name);
+        event.preventDefault();
         try {
           await axios.post("http://localhost:8080/api/auth/register", {
           email: email,
@@ -51,6 +55,7 @@ const Register = () =>{
             }
 
     return(
+        <div>
         <Container fluid>
             <Row>
                 <Col className="brand-name-side">
@@ -79,7 +84,7 @@ const Register = () =>{
                                     className="input-style"
                                     required
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Hasło"
                                     value={password}
                                     onChange={(event) => {
                                         setPassword(event.target.value);
@@ -94,7 +99,7 @@ const Register = () =>{
                                     className="input-style"
                                     required
                                     type="text"
-                                    placeholder="Name"
+                                    placeholder="Imię"
                                     value={name}
                                     onChange={(event) => {
                                         setName(event.target.value);
@@ -103,11 +108,13 @@ const Register = () =>{
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
-                        <Button type="submit" variant="dark" size="lg" className="register-button">Register</Button>
+                        <Button type="submit" variant="dark" size="lg" className="register-button">Rejestracja</Button>
                     </Form>
                 </Col>
             </Row>
         </Container>
+        <Footer />
+        </div>
     );
 }
 
