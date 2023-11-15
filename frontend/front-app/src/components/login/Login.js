@@ -101,7 +101,7 @@ const Register = () =>{
                                     className="input-style"
                                     required
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Hasło"
                                     value={password}
                                     onChange={(event) => {
                                         setPassword(event.target.value);
@@ -110,7 +110,7 @@ const Register = () =>{
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
-                        <Button className="sign-in-button" type="submit" variant="outline-light" size="lg">Sign in</Button>
+                        <Button className="sign-in-button" type="submit" variant="outline-light" size="lg">Zaloguj</Button>
                     </Form>
                 </Col>
             </Row>

@@ -8,7 +8,11 @@ import java.util.List;
 public interface RunService {
     List<Run> getRuns();
 
-    List<Run> getCurrentDaysRuns();
+    List<Run> getCurrentDaysRuns(String email);
 
-    List<Run> getRunsByDate(LocalDate date);
+    List<Run> getRunsByDate(String email, LocalDate date);
+
+    Run getFirstDate(String email);
+
+    Run getLastDate(String email);
 }

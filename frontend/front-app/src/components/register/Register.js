@@ -84,7 +84,7 @@ const Register = () =>{
                                     className="input-style"
                                     required
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Hasło"
                                     value={password}
                                     onChange={(event) => {
                                         setPassword(event.target.value);
@@ -99,7 +99,7 @@ const Register = () =>{
                                     className="input-style"
                                     required
                                     type="text"
-                                    placeholder="Name"
+                                    placeholder="Imię"
                                     value={name}
                                     onChange={(event) => {
                                         setName(event.target.value);
@@ -108,7 +108,7 @@ const Register = () =>{
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
-                        <Button type="submit" variant="dark" size="lg" className="register-button">Register</Button>
+                        <Button type="submit" variant="dark" size="lg" className="register-button">Rejestracja</Button>
                     </Form>
                 </Col>
             </Row>

@@ -39,8 +39,8 @@ public class YourPlanServiceImpl implements YourPlanService{
 
         Galloway galloway = new Galloway();
 
-        LocalTime time = LocalTime.of(0,10,0);
-        galloway.create(answersResponse, date, time);
+        LocalTime raceTime = LocalTime.of(0,10,0);
+        galloway.create(answersResponse, date, raceTime);
 
 
         if(yourPlanRepository.findByUserEmail(email) == null){
@@ -82,6 +82,11 @@ public class YourPlanServiceImpl implements YourPlanService{
                 if(runDate.getValue().get("name") != null){
                     String name = (String) runDate.getValue().get("name");
                     run.setName(name);
+                }
+
+                if(runDate.getValue().get("time") != null){
+                    LocalTime time = (LocalTime) runDate.getValue().get("time");
+                    run.setTime(time);
                 }
 
                 run.setYourPlan(yourPlan);

@@ -23,7 +23,7 @@ public class Run {
     private float distance;
 
     @Column(name = "time")
-    private int time;
+    private LocalTime time;
 
     @Column(name = "pace")
     private LocalTime pace;

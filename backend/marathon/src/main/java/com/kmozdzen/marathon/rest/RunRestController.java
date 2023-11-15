@@ -25,15 +25,25 @@ public class RunRestController {
         return runService.getRuns();
     }
 
-    @GetMapping("/current-days")
-    public List<Run> getCurrentDaysRuns(){
-        return runService.getCurrentDaysRuns();
+    @GetMapping("/current-days/{email}")
+    public List<Run> getCurrentDaysRuns(@PathVariable("email") String email){
+        return runService.getCurrentDaysRuns(email);
     }
 
-    @GetMapping("/{date}")
-    public List<Run> getRunsByDate(@PathVariable("date")String date){
+    @GetMapping("/{email}/{date}")
+    public List<Run> getRunsByDate(@PathVariable("email")String email, @PathVariable("date")String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //String yyyy-MM-dd to LocalDate
         LocalDate formattedDate = LocalDate.parse(date, formatter);
-        return runService.getRunsByDate(formattedDate);
+        return runService.getRunsByDate(email, formattedDate);
+    }
+
+    @GetMapping("/get-first-date/{email}")
+    public Run getFirstDate(@PathVariable("email")String email){
+        return runService.getFirstDate(email);
+    }
+
+    @GetMapping("/get-last-date/{email}")
+    public Run getLastDate(@PathVariable("email")String email){
+        return runService.getLastDate(email);
     }
 }

@@ -165,28 +165,28 @@ public class Galloway {
         datesForTraining(date);
         int weeks = numberWeeksToMarathonRace(); //number of weeks to marathon
 
-        int walkTime = 0;
-        int runWalkTime = 0;
+        LocalTime walkTime = LocalTime.of(0,0,0);
+        LocalTime runWalkTime = LocalTime.of(0,0,0);
         float lastRunBeforeMarathon = 0.0F;
         float raceConverter = 0.0F;
 
         switch (answersResponse.getAnswers().get(0)){
             case "początkujący":
                 System.out.println("beg");
-                walkTime = 30;
-                runWalkTime = 30;
+                walkTime = LocalTime.of(0,30,0);
+                runWalkTime = LocalTime.of(0,30,0);
                 lastRunBeforeMarathon = 19.0F;
                 break;
             case "średniozaawansowany":
                 System.out.println("int");
-                walkTime = 45;
-                runWalkTime = 45;
+                walkTime = LocalTime.of(0,45,0);
+                runWalkTime = LocalTime.of(0,45,0);
                 lastRunBeforeMarathon = 25.5F;
                 break;
             case "zaawansowany":
                 System.out.println("adv");
-                walkTime = 60;
-                runWalkTime = 60;
+                walkTime = LocalTime.of(1,0,0);
+                runWalkTime = LocalTime.of(1,0,0);
                 lastRunBeforeMarathon = 32.0F;
                 break;
             default:
@@ -222,9 +222,10 @@ public class Galloway {
         LocalTime runTimeInRunWalk = timesInRunWalk.get(0);
         LocalTime walkTimeInRunWalk = timesInRunWalk.get(1);
 
+
         for (LocalDate d : dates) {
            if(d.getDayOfWeek() == DayOfWeek.MONDAY || d.getDayOfWeek() == DayOfWeek.WEDNESDAY || d.getDayOfWeek() == DayOfWeek.FRIDAY){
-               int finalWalkTime = walkTime;
+               LocalTime finalWalkTime = walkTime;
                race.put(d, new HashMap<>() {
                    {
                        put("name", "Marsz");
@@ -232,7 +233,7 @@ public class Galloway {
                    }
                });
            } else if (d.getDayOfWeek() == DayOfWeek.TUESDAY || d.getDayOfWeek() == DayOfWeek.THURSDAY) {
-               int finalRunWalkTime = runWalkTime;
+               LocalTime finalRunWalkTime = runWalkTime;
                race.put(d, new HashMap<>() {
                    {
                        put("name", "Bieg/Marsz");

@@ -33,8 +33,8 @@ const Home = () => {
                         <h1>MarathonPro</h1>
                         <h4 className="quote">"Pain is temporary. Quitting lasts forever." - Lance Armstrong</h4>
                         <div className="buttons">
-                            <Button onClick={routeChangeToLogin} className="sign-in-button" variant="outline-light" size="lg">Sign in</Button>
-                            <Button onClick={routeChangeToRegister} variant="dark" size="lg">Register</Button>
+                            <Button onClick={routeChangeToLogin} className="sign-in-button" variant="outline-light" size="lg">Zaloguj</Button>
+                            <Button onClick={routeChangeToRegister} variant="dark" size="lg">Rejestracja</Button>
                         </div>
                     </div>
                 </div>

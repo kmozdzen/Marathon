@@ -38,7 +38,7 @@
 .calendar-buttons button
 {
     margin-right: 10px;
-
+    margin: auto;
 }
 
 .react-calendar-style
@@ -85,11 +85,25 @@
 
 .react-calendar__tile:active, 
 .react-calendar__tile:enabled:focus {
-    background-color: red !important;
+    background-color: transparent !important;
+    color: inherit !important;
   }
 
 .react-calendar__tile--active:enabled, 
 .react-calendar__tile--active:hover, 
 .react-calendar__tile--active:focus {
-    background-color: red !important; 
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+.run-name
+{
+    font-weight: 700 !important;
+    margin-bottom: 20px;
+}
+
+.carousel-caption-style .carousel-stats p
+{
+    margin-top: 8px;
+    margin-bottom: 0;
 }
