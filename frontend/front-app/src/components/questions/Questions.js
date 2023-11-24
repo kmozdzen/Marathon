@@ -136,7 +136,7 @@ const Questions = () => {
                 <div className="summary">
                   <div className="summary-single-item">
                     <h2>Nazwa:</h2>
-                    <p>{raceName === "" ? "wyścig" : {raceName}}</p>
+                    <p>{raceName === "" ? "wyścig" : raceName}</p>
                   </div>
                   <div className="summary-single-item">
                     <h2>Data:</h2>
@@ -189,7 +189,7 @@ const Questions = () => {
                       <Form.Label as="legend" row="" sm={2} className="question-label">
                         Wybierz datę maratonu
                       </Form.Label>
-                      <Col sm={10} className="answers">
+                      <Col sm={10} className="answers" >
                         <DatePicker
                           selected={raceDate}
                           onChange={(date) => setRaceDate(date)}
@@ -198,10 +198,11 @@ const Questions = () => {
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" md="auto">
-                      <Col sm={{ span: 10 }}>
+                      <Col sm={{ span: 10 }} className="question-row">
                         <Button
                           onClick={handleToQuestions}
                           variant="outline-light"
+                          className="next-button"
                         >
                           Dalej
                         </Button>
@@ -231,16 +232,16 @@ const Questions = () => {
                           )}
                       </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" md="auto">
+                    <Form.Group as={Row} className="next-prev-but mb-3" md="auto">
                     {currentQuestionIndex > -1 ? (
-                      <Col sm={{ span: 5 }}>
+                      <Col sm={{ span: 5 }} className="question-row">
                         <Button onClick={handlePreviousQuestion} variant="light">
                           Cofnij
                         </Button>
                       </Col>
                     ) : null}
-                    <Col sm={{ span: 5 }}>
-                      <Button onClick={handleNextQuestion} variant="outline-light">
+                    <Col sm={{ span: 5 }} className="question-row">
+                      <Button onClick={handleNextQuestion} variant="outline-light" className="next-button">
                         Dalej
                       </Button>
                     </Col>

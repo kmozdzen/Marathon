@@ -28,9 +28,33 @@
 {
     display: flex;
     text-align: center;
+    font-size: 4rem;
 }
 
 .stats-data
 {
     margin: auto;
+}
+
+.check-icon
+{
+    font-size: 3rem;
+    color: green;
+}
+
+.check-icons
+{
+    font-size: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .stats-content .container .row
+    {
+        flex-direction: column;
+    }
+
+    .stats-col-style
+    {
+        margin: auto;
+    }
 }

@@ -2,7 +2,7 @@ import "./YourPlan.css";
 import React from "react";
 
 import Header from "../navbar/Header";
-import { Carousel, Button } from 'react-bootstrap';
+import { Carousel, Button, Container } from 'react-bootstrap';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -11,12 +11,21 @@ import axios from "axios";
 import Stats from "../stats/Stats";
 import Footer from "../footer/Footer";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
+
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 const YourPlan = () => {
     const [runDays, setRunDays] = useState();
     const [firstDay, setFirstDay] = useState();
     const [lastDay, setLastDay] = useState();
     const [carouselActiveIndex, setCarouselActiveIndex] = useState(0); // Initialize with 0
     const containerRef = useRef(null);
+    const [confirmationState, setConfirmationState] = useState({ id: null, confirmed: null });
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/run/current-days/' + localStorage.getItem("email"))
@@ -87,10 +96,43 @@ const YourPlan = () => {
         });
     }
 
+    const handleCheck = (idRun) => {
+        console.log(idRun);
+        changeRunCheck(idRun, true);
+    }
+
+    const handleXmark = (idRun) => {
+        console.log(idRun);
+        changeRunCheck(idRun, false);
+    }
+
+    const changeRunCheck = (idRun, runCheck) => {
+        axios.put('http://localhost:8080/api/run/check/' + idRun, {
+            runCheck: runCheck
+        })
+          .then((res) => {
+            if (res.data.runCheck === runCheck) {
+                // update confirmation states for a specific run
+                setRunDays(prevRunDays => {
+                    return prevRunDays.map(run => {
+                        if (run.idRun === idRun) {
+                            return { ...run, runCheck: runCheck };
+                        }
+                        return run;
+                    });
+                });
+            }
+          })
+          .catch(error => {
+                console.error(error);
+          });
+    }
+
     return(
         <div>
             <div className="your-plan-container">
                 <Header containerRef={containerRef}/>
+                <Container fluid="md">
                 <div className="calendar-container">
                     <div className="calendar-panel">
                         <div>
@@ -153,17 +195,34 @@ const YourPlan = () => {
                                                         <p>Czas marszu: {run.runTime}</p>
                                                     </div> 
                                         }
+                                    })()}
+                                    {run.name != 'Dzień wolny' ?
+                                    <div>
+                                        <div className="check-icon">
+                                            {run.runCheck ?
+                                                <FontAwesomeIcon icon={faCheck}/>
+                                                :
+                                                null
+                                            }
+                                        </div>
+                                        <div className="check-icons">
+                                            <FontAwesomeIcon onClick={() => handleCheck(run.idRun)} icon={faCircleCheck}/>
+                                            <FontAwesomeIcon onClick={() => handleXmark(run.idRun)} icon={faCircleXmark}/>  
+                                        </div>
+                                    </div>
+                                    :
+                                    null
                                     }
-                                        )()} 
-                                </Carousel.Caption>
-                                
+                                </Carousel.Caption>                               
                             </Carousel.Item>    
                         ))}    
                     </Carousel>
                     
                 </div>
+                </Container>
             </div>
             <Stats ref={containerRef} />
+            <Footer/>
         </div>
     );
 }

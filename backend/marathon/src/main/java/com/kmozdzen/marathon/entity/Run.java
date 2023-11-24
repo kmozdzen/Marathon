@@ -37,6 +37,9 @@ public class Run {
     @Column(name = "date")
     private LocalDate date;
 
+    @Column(name = "run_check")
+    private boolean runCheck;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idYourPlan")

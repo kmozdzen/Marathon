@@ -16,3 +16,16 @@
     color: white;
     font-size: 2rem;
 }
+
+.no-padding
+{
+    padding: 0 !important;
+}
+
+@media (max-width: 420px) 
+{
+    .navbar-nav a
+    {
+        margin: auto;
+    }
+}

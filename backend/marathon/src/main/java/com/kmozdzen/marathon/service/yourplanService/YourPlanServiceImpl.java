@@ -89,6 +89,7 @@ public class YourPlanServiceImpl implements YourPlanService{
                     run.setTime(time);
                 }
 
+                run.setRunCheck(false);
                 run.setYourPlan(yourPlan);
                 runRepository.save(run);
             }

@@ -60,6 +60,7 @@
 
 .question-row .question-label
 {
+    color: #FF6666;
     margin-bottom: 10px;
     margin-top: 40px;
 }
@@ -72,7 +73,7 @@
 
 .question-row .answers .form-control
 {
-    width: 60%;
+    width: 100%;
     margin: auto;
 }
 
@@ -85,6 +86,11 @@
 {
     display: flex;
     justify-content: space-around;
+}
+
+.summary .summary-single-item h2
+{
+    color: #FF6666;
 }
 
 .send-questions .summary-buttons
@@ -107,6 +113,25 @@
 .send-questions .summary-buttons .create-plan-button
 {
     margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.question-row 
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.question-row .answers 
+{
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (max-width: 800px) {
@@ -120,5 +145,42 @@
     .questions-block
     {
         width: 500px;
+    }
+}
+
+/* Media Query for mobile devices */
+@media only screen and (max-device-width: 420px)
+{
+  
+    .questions-block
+    {
+        width: 300px;
+    }
+
+
+    .question-row .answers 
+    {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .answers
+    {
+        font-size: 1.2rem;
+    }
+
+    .form-check
+    {
+        margin-left: 20px;
+    }
+
+    .next-prev-but
+    {
+        gap: 10px;
+    }
+
+    .send-questions
+    {
+        flex-direction: column;
     }
 }

@@ -5,17 +5,6 @@
   height: 90vh;
 }
 
-.left-side {
-  width: 50%;
-}
-
-.right-side {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-}
 
 .right-side h1 {
   font-size: 5rem;
@@ -31,12 +20,14 @@
   margin: auto;
   margin-top: 0;
   gap: 20px;
+
 }
 
 .buttons button {
-  width: 25vw;
-  font-size: 2em;
+  width: auto;
+  font-size: 2rem;
   border-radius: 30px;
+  margin: auto;
 }
 
 h1 {
@@ -48,4 +39,31 @@ h1 {
   font-size: 3rem;
   width: 70%;
   margin: 5vh auto;
+}
+
+.home-content
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.row .brand-name
+{
+  font-size: 4rem;
+}
+
+/* Media Query for mobile devices */
+@media only screen and (max-device-width: 420px)
+{
+  
+  .quote
+  {
+    font-size: 1.5rem;
+  }
+  
+  .row .brand-name
+  {
+    font-size: 3rem;
+  }
 }

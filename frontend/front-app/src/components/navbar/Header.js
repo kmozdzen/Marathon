@@ -29,15 +29,18 @@ const Header = ({containerRef}) => {
     }
     
     return(
-        <Navbar expand="lg" bg="black" data-bs-theme="dark" className="navbar-header-style">
-            <Navbar.Brand href="/"><h1 id="site-name-id">MarathonPro</h1></Navbar.Brand>
-            <Nav className="m-auto">
-                <Nav.Link href="/yourplan" className="nav-link-header-style">Twój plan</Nav.Link>
-                <Nav.Link onClick={scrollToContainer} className="nav-link-header-style">Statystyki</Nav.Link>
-            </Nav>
-            <Nav>
-                <Nav.Link href="#"><FontAwesomeIcon className="logout-icon-style" onClick={logout}  icon={faArrowRightFromBracket}/></Nav.Link>
-            </Nav>
+        <Navbar expand="md" bg="black" data-bs-theme="dark" className="navbar-header-style">
+                <Navbar.Brand href="/"><h1 id="site-name-id">MarathonPro</h1></Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                <Nav className="m-auto">
+                    <Nav.Link href="/yourplan" className="nav-link-header-style">Twój plan</Nav.Link>
+                    <Nav.Link onClick={scrollToContainer} className="nav-link-header-style">Statystyki</Nav.Link>
+                </Nav>
+                <Nav>
+                    <Nav.Link href="#"><FontAwesomeIcon className="logout-icon-style" onClick={logout}  icon={faArrowRightFromBracket}/></Nav.Link>
+                </Nav>
+                </Navbar.Collapse>
         </Navbar>
     );
 }

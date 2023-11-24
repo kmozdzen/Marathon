@@ -18,7 +18,7 @@
 {    
     width: 500px;
     height: 700px;
-
+    min-width: 500px;
     margin: auto;
     margin-left: 10%;
     
@@ -76,7 +76,12 @@
 .carousel-caption-style .carousel-stats
 {
     margin: auto;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 .calendar-style .data-picker
 {
@@ -106,4 +111,116 @@
 {
     margin-top: 8px;
     margin-bottom: 0;
+}
+
+.check-icons svg:hover
+{
+    cursor: pointer;
+}
+
+.carousel-caption-style .check-icons 
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width: 940px) {
+    .your-plan-container
+    {
+        height: 200vh;
+    }
+    
+    .calendar-container {
+        flex-direction: column;
+        height: 190vh;
+    }
+
+    .carousel-style {
+        width: 70%;
+        margin: auto;
+    }
+
+    .carousel-style .carousel-image-style {
+        width: 100%;
+        height: auto;
+    }
+
+
+    .calendar-panel
+    {
+        margin: auto;
+        margin-bottom: 0px;
+    }
+    
+
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 420px) {
+    .your-plan-container
+    {
+        height: 150vh;
+    }
+    
+    .calendar-container {
+        flex-direction: column;
+        height: 140vh;
+    }
+
+    .carousel-style {
+        width: 100%;
+        min-width: 200px;
+        height: 80vh;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .carousel-style .carousel-image-style {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-caption-style .check-icons {
+        display: flex;
+        justify-content: center;
+    }
+
+    .carousel-inner
+    {
+        height: 80vh;
+        background-color: white;
+        border-radius: 30px;
+        position: relative;
+    }
+
+    .carousel-style .carousel-caption-style
+    {
+        position: absolute;
+        bottom: 0px;
+        left: 40%;
+        transform: translate(-50%, 0);
+        width: 100%;
+        height: 50%;
+
+    }
+    .carousel-caption-style .check-icons 
+    {
+        margin-top: 10px;
+    }
+
+    .carousel-caption-style .carousel-stats
+    {
+        margin: 10px;
+    }
+
+    .carousel-caption-style .check-icon
+    {
+        font-size: 2rem;
+    }
+
+    .run-name
+    {
+        margin: 0;
+    }
 }
