@@ -8,8 +8,11 @@ import com.kmozdzen.marathon.response.AnswersResponse;
 import com.kmozdzen.marathon.respository.RunRepository;
 import com.kmozdzen.marathon.respository.UserRepository;
 import com.kmozdzen.marathon.respository.YourPlanRepository;
+import com.kmozdzen.marathon.service.answerService.AnswerService;
+import com.kmozdzen.marathon.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,12 +23,14 @@ public class YourPlanServiceImpl implements YourPlanService{
     private YourPlanRepository yourPlanRepository;
     private UserRepository userRepository;
     private RunRepository runRepository;
+    private AnswerService answerService;
 
     @Autowired
-    public YourPlanServiceImpl(YourPlanRepository yourPlanRepository, UserRepository userRepository, RunRepository runRepository) {
+    public YourPlanServiceImpl(YourPlanRepository yourPlanRepository, UserRepository userRepository, RunRepository runRepository, AnswerService answerService) {
         this.yourPlanRepository = yourPlanRepository;
         this.userRepository = userRepository;
         this.runRepository = runRepository;
+        this.answerService = answerService;
     }
 
     @Override
@@ -48,7 +53,7 @@ public class YourPlanServiceImpl implements YourPlanService{
 
             YourPlan yourPlan = new YourPlan();
             yourPlan.setRaceDate(date);
-            yourPlan.setName("default");
+            yourPlan.setName(answersResponse.getRaceName());
             yourPlan.setUser(user);
 
             yourPlanRepository.save(yourPlan);
@@ -100,9 +105,15 @@ public class YourPlanServiceImpl implements YourPlanService{
 
     @Override
     public void remove(int id) {
-        YourPlan yourPlan = yourPlanRepository.findById(id).orElse(null);
-        if (yourPlan != null) {
-            yourPlanRepository.delete(yourPlan);
+        User user = userRepository.findById(id).orElse(null);
+
+        if(user != null){
+            YourPlan yourPlan = yourPlanRepository.findById(user.getYourPlan().getIdYourPlan()).orElse(null);
+            if (yourPlan != null) {
+                answerService.clearUserAnswers(user);
+                yourPlanRepository.delete(yourPlan);
+            }
         }
     }
+
 }

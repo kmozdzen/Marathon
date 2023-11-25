@@ -9,7 +9,8 @@
 
 body > #root > div, .base-container, 
 .your-plan-container, .stats-container,
-.questions-container
+.questions-container, .plan-details-container,
+.profile-container
 {
     height: 100vh;
 }
@@ -47,7 +48,7 @@ a
     height: 90vh;
 }
 
-.your-plan-container
+.your-plan-container, .plan-details-container, .profile-container
 {
     background-color: #FF6666;
 }

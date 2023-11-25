@@ -10,6 +10,7 @@ public class LoginMessage {
     String token;
     String email;
     String name;
+    int id;
     public List<Role> getRoles() {
         return roles;
     }
@@ -19,6 +20,14 @@ public class LoginMessage {
     }
 
     List<Role> roles;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -65,12 +74,13 @@ public class LoginMessage {
         this.status = status;
     }
 
-    public LoginMessage(String message, Boolean status, String token, String email, String name, List<Role> roles) {
+    public LoginMessage(String message, Boolean status, String token, String email, String name, List<Role> roles, int id) {
         this.message = message;
         this.status = status;
         this.token = token;
         this.email = email;
         this.name = name;
+        this.id = id;
         this.roles = roles;
     }
 }

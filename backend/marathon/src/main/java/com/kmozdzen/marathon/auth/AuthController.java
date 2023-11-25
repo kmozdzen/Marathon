@@ -50,7 +50,7 @@ public class AuthController {
             if(user != null){
                 String token;
                 if(!(token = service.authenticate(request).getAccessToken()).isEmpty())
-                    return new LoginMessage("Login success", true, token, user.getEmail(), user.getName(), user.getRoles());
+                    return new LoginMessage("Login success", true, token, user.getEmail(), user.getName(), user.getRoles(), user.getId());
                 else
                     return new LoginMessage("Login failed", false);
             }else

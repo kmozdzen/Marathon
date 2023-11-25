@@ -17,14 +17,32 @@
     font-size: 2rem;
 }
 
+.settings-icon-style
+{
+    margin: 10px 0px;
+    color: white;
+    font-size: 2rem;
+}
+
+#dropdown-settings
+{
+    background-color: transparent;
+    border: none;
+}
+
 .no-padding
 {
     padding: 0 !important;
 }
 
+.dropdown-item:active
+{
+    background-color: transparent !important;
+}
+
 @media (max-width: 420px) 
 {
-    .navbar-nav a
+    .navbar-nav a, .navbar-nav .dropdown
     {
         margin: auto;
     }

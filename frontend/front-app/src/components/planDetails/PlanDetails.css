@@ -1,0 +1,21 @@
+@import "../style/Style.css";
+
+.plan-details-content
+{
+    margin-top: 200px;
+    display: flex;
+    text-align: center;
+}
+
+.plan-details-content .container-lg
+{
+    width: 40%;
+}
+
+
+/* Media Query for mobile devices */
+@media only screen and (max-device-width: 420px)
+{
+ 
+
+}

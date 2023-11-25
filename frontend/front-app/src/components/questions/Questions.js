@@ -194,6 +194,8 @@ const Questions = () => {
                           selected={raceDate}
                           onChange={(date) => setRaceDate(date)}
                           className="datepicker-race-date"
+                          minDate={new Date()} // It does not allow you to select a date from the past
+                          maxDate={addSeconds(new Date(), 31536000)} // max 1 year ahead
                         />
                       </Col>
                     </Form.Group>

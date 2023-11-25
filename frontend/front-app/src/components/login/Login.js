@@ -49,6 +49,7 @@ const Register = () =>{
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('name', res.data.name);
+                localStorage.setItem('id', res.data.id);
                 navigate("/yourplan")
              }
              if(res.data.message === "Email not exits")

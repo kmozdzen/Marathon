@@ -19,7 +19,9 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
-const YourPlan = () => {
+
+
+const YourPlan = (props) => {
     const [runDays, setRunDays] = useState();
     const [firstDay, setFirstDay] = useState();
     const [lastDay, setLastDay] = useState();
@@ -52,6 +54,12 @@ const YourPlan = () => {
           .catch(error => {
                 console.error(error);
           });
+            
+          if (props.scrollStatus.stats) {
+            if (containerRef.current) {
+                containerRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     }, []);
 
     const changeCarouselItem = (date) => {
