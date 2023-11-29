@@ -32,7 +32,7 @@ function App() {
                 element={
                             <ProtectedRoute>
                                 <IsPlan>
-                                    <YourPlan scrollStatus={{stats: false, info: false}}/>
+                                    <YourPlan scrollStatus={{stats: false, exercises: false}}/>
                                 </IsPlan>
                             </ProtectedRoute>
                         }>
@@ -42,7 +42,7 @@ function App() {
                 element={
                             <ProtectedRoute>
                                 <IsPlan>
-                                    <YourPlan scrollStatus={{stats: true, info: false}} /> 
+                                    <YourPlan scrollStatus={{stats: true, exercises: false}} /> 
                                 </IsPlan>
                             </ProtectedRoute>
                         }>
@@ -63,6 +63,16 @@ function App() {
                             <ProtectedRoute>
                                 <IsPlan>
                                     <Profile /> 
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
+            </Route>
+            <Route 
+                path="/exercises" 
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <YourPlan scrollStatus={{stats: false, exercises: true}} />  
                                 </IsPlan>
                             </ProtectedRoute>
                         }>

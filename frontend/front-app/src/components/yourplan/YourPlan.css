@@ -1,5 +1,10 @@
 @import "../style/Style.css";
 
+.your-plan-container
+{
+    min-height: 1000px;
+}
+
 .calendar-container
 {
     display: flex;
@@ -122,6 +127,18 @@
 {
     display: flex;
     justify-content: center;
+}
+
+.info-overlay-wrapper {
+    width: 10%;
+    margin: 0;
+    margin-left: 90%;
+}
+
+.info-icon
+{
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 

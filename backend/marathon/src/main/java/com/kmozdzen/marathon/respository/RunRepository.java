@@ -48,7 +48,7 @@ public interface RunRepository extends JpaRepository<Run, Integer> {
             "JOIN r.yourPlan yp " +
             "JOIN yp.user u " +
             "WHERE u.email = :email")
-    float findTotalDistanceByEmail(@Param("email") String email);
+    float findDistanceByEmail(@Param("email") String email);
 
     @Query("SELECT SUM(r.time) FROM Run r " +
             "JOIN r.yourPlan yp " +
@@ -56,7 +56,7 @@ public interface RunRepository extends JpaRepository<Run, Integer> {
             "WHERE u.email = :email " +
             "AND r.runCheck = true " +
             "AND r.name = 'Marsz' ")
-    int findTotalRunTimeByEmail(@Param("email") String email);
+    long findRunTimeByEmail(@Param("email") String email);
 
     @Query("SELECT SUM(r.time) FROM Run r " +
             "JOIN r.yourPlan yp " +
@@ -64,6 +64,20 @@ public interface RunRepository extends JpaRepository<Run, Integer> {
             "WHERE u.email = :email " +
             "AND r.runCheck = true " +
             "AND r.name = 'Bieg/Marsz' ")
-    int findTotalWalkRunTimeByEmail(@Param("email") String email);
+    long findWalkRunTimeByEmail(@Param("email") String email);
+
+    @Query("SELECT SUM(r.time) FROM Run r " +
+            "JOIN r.yourPlan yp " +
+            "JOIN yp.user u " +
+            "WHERE u.id = :id " +
+            "AND r.name = 'Bieg/Marsz' ")
+    long findTotalWalkRunTimeById(@Param("id") int id);
+
+    @Query("SELECT SUM(r.time) FROM Run r " +
+            "JOIN r.yourPlan yp " +
+            "JOIN yp.user u " +
+            "WHERE u.id = :id " +
+            "AND r.name = 'Marsz' ")
+    long findTotalWalkTimeById(@Param("id") int id);
 
 }

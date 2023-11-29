@@ -19,7 +19,6 @@ const Profile = () => {
     const [email, setEmail] = useState("");
 
     const containerRef = useRef(null);
-
     useEffect(() => {
         axios.get('http://localhost:8080/api/user/' + localStorage.getItem("id"))
           .then((res) => {
@@ -35,7 +34,7 @@ const Profile = () => {
     return(
         <div>
             <div className="profile-container">
-                <Header containerRef={containerRef}/>
+                <Header statsContainerRef={containerRef} exercisesContainerRef={containerRef}/>
                 <div className="profile-icon">
                     <FontAwesomeIcon className="user-icon" icon={faUser}/>
                 </div>

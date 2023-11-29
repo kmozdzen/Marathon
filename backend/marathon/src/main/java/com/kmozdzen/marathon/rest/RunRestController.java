@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -66,12 +67,22 @@ public class RunRestController {
     }
 
     @GetMapping("/get-walk-time/{email}")
-    public LocalTime getWalkTime(@PathVariable("email")String email){
+    public long getWalkTime(@PathVariable("email")String email){
         return runService.getWalkTime(email);
     }
 
     @GetMapping("/get-run-walk-time/{email}")
-    public LocalTime getWalkRunTime(@PathVariable("email")String email){
+    public long getWalkRunTime(@PathVariable("email")String email){
         return runService.getWalkRunTime(email);
+    }
+
+    @GetMapping("/get-total-run-walk-time/{id}")
+    public long getTotalWalkRunTime(@PathVariable("id")int id){
+        return runService.getTotalWalkRunTime(id);
+    }
+
+    @GetMapping("/get-total-walk-time/{id}")
+    public long getTotalWalkTime(@PathVariable("id")int id){
+        return runService.getTotalWalkTime(id);
     }
 }

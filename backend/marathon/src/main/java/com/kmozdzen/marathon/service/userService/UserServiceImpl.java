@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService{
     public List<String> getUserAnswers(String email) {
         User user;
         List<String> answers = new ArrayList<>();
-        int answersCount = 4;
+        int answersCount = 5;
 
         user = userRepository.findByEmail(email);
 
@@ -78,6 +78,7 @@ public class UserServiceImpl implements UserService{
                 answers.add(answer.getContent());
             }
             answers.add(user.getYourPlan().getRaceDate().toString());
+            answers.add(user.getYourPlan().getMmTime().toString());
         }
 
 

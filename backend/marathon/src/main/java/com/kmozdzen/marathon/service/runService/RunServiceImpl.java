@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -82,43 +83,56 @@ public class RunServiceImpl implements RunService{
 
     @Override
     public float getDistanceToRun(String email) {
-        return runRepository.findTotalDistanceByEmail(email);
+        return runRepository.findDistanceByEmail(email);
     }
 
     @Override
-    public LocalTime getWalkTime(String email) {
-        int totalRunTime;
+    public long getWalkTime(String email) {
+        long totalRunTime;
 
         try{
-            totalRunTime= runRepository.findTotalRunTimeByEmail(email);
+            totalRunTime= runRepository.findRunTimeByEmail(email);
+            return totalRunTime;
         }catch (Exception ex){
-            return LocalTime.of(0,0,0);
+            return 0;
         }
-
-        int hours = totalRunTime / 6000;
-        int minutes = (totalRunTime % 6000) / 100;
-
-        LocalTime time = LocalTime.of(hours, minutes, 0);
-
-        return time;
     }
 
     @Override
-    public LocalTime getWalkRunTime(String email) {
-        int totalRunTime;
+    public long getWalkRunTime(String email) {
+        long totalRunTime;
 
         try{
-            totalRunTime= runRepository.findTotalWalkRunTimeByEmail(email);
+            totalRunTime= runRepository.findWalkRunTimeByEmail(email);
+            return totalRunTime;
         }catch (Exception ex){
-            return LocalTime.of(0,0,0);
+            return 0;
+        }
+    }
+
+    @Override
+    public long getTotalWalkRunTime(int id) {
+        long totalRunTime;
+
+        try{
+            totalRunTime= runRepository.findTotalWalkRunTimeById(id);
+            return totalRunTime;
+        }catch (Exception ex){
+            return 0;
         }
 
-        int hours = totalRunTime / 6000;
-        int minutes = (totalRunTime % 6000) / 100;
+    }
 
-        LocalTime time = LocalTime.of(hours, minutes, 0);
+    @Override
+    public long getTotalWalkTime(int id) {
+        long totalRunTime;
 
-        return time;
+        try{
+            totalRunTime= runRepository.findTotalWalkTimeById(id);
+            return totalRunTime;
+        }catch (Exception ex){
+            return 0;
+        }
     }
 
 }

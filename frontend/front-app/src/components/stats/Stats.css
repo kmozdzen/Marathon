@@ -2,15 +2,31 @@
 
 .stats-content
 {
-    height: 91.5vh;
-
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .stats-content .container
 {
     margin: auto;
+}
+
+.stats-container .empty-block
+{
+    background-color: black;
+    height: 50vh;
+}
+
+.stats-container .stats-block
+{
+    height: 50vh;
+}
+
+.stats-container .progress-bars-block
+{
+    height: 50vh;
 }
 
 .h2-style
@@ -28,7 +44,7 @@
 {
     display: flex;
     text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 .stats-data
@@ -38,13 +54,35 @@
 
 .check-icon
 {
-    font-size: 3rem;
+    font-size: 2rem;
     color: green;
 }
 
 .check-icons
 {
     font-size: 2rem;
+}
+
+/* progress bar */
+.progress-bars-block
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.progress-bars-block .stats-progress-bar-style
+{
+    height: 5vh;
+}
+
+.stats-progress-bar-container
+{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 @media (max-width: 1200px) {
@@ -56,5 +94,29 @@
     .stats-col-style
     {
         margin: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .stats-col-style 
+    {
+      font-size: 1.5rem;
+    }
+
+    .h2-style
+    {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-col-style 
+    {
+      font-size: 1.9rem;
+    }
+
+    .h2-style
+    {
+        font-size: 1.4rem;
     }
 }

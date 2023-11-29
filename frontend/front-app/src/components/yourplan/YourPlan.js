@@ -16,8 +16,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import Exercises from "../exercises/Exercieses";
+import InfoOverlay from "./InfoOverlay";
 
 
 
@@ -26,7 +27,8 @@ const YourPlan = (props) => {
     const [firstDay, setFirstDay] = useState();
     const [lastDay, setLastDay] = useState();
     const [carouselActiveIndex, setCarouselActiveIndex] = useState(0); // Initialize with 0
-    const containerRef = useRef(null);
+    const statsContainerRef = useRef(null);
+    const exercisesContainerRef = useRef(null);
     const [confirmationState, setConfirmationState] = useState({ id: null, confirmed: null });
 
     useEffect(() => {
@@ -56,10 +58,16 @@ const YourPlan = (props) => {
           });
             
           if (props.scrollStatus.stats) {
-            if (containerRef.current) {
-                containerRef.current.scrollIntoView({ behavior: 'smooth' });
+            if (statsContainerRef.current) {
+                statsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
             }
-        }
+          }
+
+          if (props.scrollStatus.exercises) {
+            if (exercisesContainerRef.current) {
+                exercisesContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
     }, []);
 
     const changeCarouselItem = (date) => {
@@ -139,7 +147,7 @@ const YourPlan = (props) => {
     return(
         <div>
             <div className="your-plan-container">
-                <Header containerRef={containerRef}/>
+                <Header statsContainerRef={statsContainerRef} exercisesContainerRef={exercisesContainerRef}/>
                 <Container fluid="md">
                 <div className="calendar-container">
                     <div className="calendar-panel">
@@ -181,6 +189,9 @@ const YourPlan = (props) => {
                                 />
                                 <Carousel.Caption className="carousel-caption-style">
                                     <h5>{run.date}</h5>
+                                    <div className="info-overlay-wrapper">
+                                        <InfoOverlay name={run.name}/>
+                                    </div>
                                     {(() => {
                                         if(run.name === "Długi bieg") {
                                             return <div className="carousel-stats">
@@ -229,7 +240,8 @@ const YourPlan = (props) => {
                 </div>
                 </Container>
             </div>
-            <Stats ref={containerRef} />
+            <Stats ref={statsContainerRef} />
+            <Exercises ref={exercisesContainerRef} />
             <Footer/>
         </div>
     );

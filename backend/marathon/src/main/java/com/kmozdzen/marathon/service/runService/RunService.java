@@ -3,6 +3,7 @@ package com.kmozdzen.marathon.service.runService;
 import com.kmozdzen.marathon.entity.Run;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -23,7 +24,11 @@ public interface RunService {
 
     float getDistanceToRun(String email);
 
-    LocalTime getWalkTime(String email);
+    long getWalkTime(String email);
 
-    LocalTime getWalkRunTime(String email);
+    long getWalkRunTime(String email);
+
+    long getTotalWalkRunTime(int id);
+
+    long getTotalWalkTime(int id);
 }

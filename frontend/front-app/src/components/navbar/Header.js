@@ -14,7 +14,7 @@ import axios from 'axios';
 
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ containerRef }) => {
+const Header = ({ statsContainerRef, exercisesContainerRef  }) => {
     
     const navigate = useNavigate();
 
@@ -41,12 +41,21 @@ const Header = ({ containerRef }) => {
             console.log(err.message);
         });
 
-    const scrollToContainer = () => {
-        if (containerRef.current) {
-            containerRef.current.scrollIntoView({ behavior: 'smooth' });
+    const scrollToStatsContainer = () => {
+        if (statsContainerRef.current) {
+            statsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
         } else
         {
             navigate("/stats");
+        }
+    }
+
+    const scrollToExercisesContainer = () => {
+        if (exercisesContainerRef.current) {
+            exercisesContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else
+        {
+            navigate("/exercises");
         }
     }
     
@@ -57,7 +66,8 @@ const Header = ({ containerRef }) => {
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                 <Nav className="m-auto">
                     <Nav.Link onClick={handleYourPlanClick} className="nav-link-header-style">Twój plan</Nav.Link>
-                    <Nav.Link onClick={scrollToContainer} className="nav-link-header-style">Statystyki</Nav.Link>
+                    <Nav.Link onClick={scrollToStatsContainer} className="nav-link-header-style">Statystyki</Nav.Link>
+                    <Nav.Link onClick={scrollToExercisesContainer} className="nav-link-header-style">Ćwiczenia</Nav.Link>
                 </Nav>
                 <Nav>
                     <Dropdown align="end">

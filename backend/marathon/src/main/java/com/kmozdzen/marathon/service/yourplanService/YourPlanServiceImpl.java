@@ -39,14 +39,12 @@ public class YourPlanServiceImpl implements YourPlanService{
     }
 
     @Override
-    public YourPlan create(String email, AnswersResponse answersResponse, LocalDate date) {
+    public YourPlan create(String email, AnswersResponse answersResponse, LocalDate date, LocalTime mmTime) {
         System.out.println(answersResponse);
 
         Galloway galloway = new Galloway();
 
-        LocalTime raceTime = LocalTime.of(0,10,0);
-        galloway.create(answersResponse, date, raceTime);
-
+        galloway.create(answersResponse, date, mmTime);
 
         if(yourPlanRepository.findByUserEmail(email) == null){
             User user = userRepository.findByEmail(email);
@@ -54,6 +52,7 @@ public class YourPlanServiceImpl implements YourPlanService{
             YourPlan yourPlan = new YourPlan();
             yourPlan.setRaceDate(date);
             yourPlan.setName(answersResponse.getRaceName());
+            yourPlan.setMmTime(mmTime);
             yourPlan.setUser(user);
 
             yourPlanRepository.save(yourPlan);

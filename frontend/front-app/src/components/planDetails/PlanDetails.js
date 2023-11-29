@@ -16,6 +16,7 @@ const PlanDetails = () => {
     const [expirience, setExpirience] = useState("");
     const [goal, setGoal] = useState("");
     const [raceDate, setRaceDate] = useState("");
+    const [mmTime, setMmTime] = useState("");
     const [modalShow, setModalShow] = React.useState(false);
 
     const containerRef = useRef(null);
@@ -28,7 +29,7 @@ const PlanDetails = () => {
                 setExpirience(res.data[1]);
                 setGoal(res.data[2]);
                 setRaceDate(res.data[3]);
-    
+                setMmTime(res.data[4]);
           })
           .catch(error => {
                 console.error(error);
@@ -38,11 +39,11 @@ const PlanDetails = () => {
     return(
         <div>
             <div className="plan-details-container">
-                <Header containerRef={containerRef}/>
+                <Header statsContainerRef={containerRef} exercisesContainerRef={containerRef}/>
                 <div className="plan-details-content">
                     <Container fluid="lg" >
                         <Row className="justify-content-md-center">
-                            <Col className="full-width">
+                            <Col className="plan-details-row full-width">
                                 <ListGroup className="user-data-list" variant="flush">
                                         <ListGroup.Item className="user-data-list-item">
                                             <div className="data-item">
@@ -69,6 +70,13 @@ const PlanDetails = () => {
                                             <div className="data-item">
                                                 <p className="header-p">Data wyścigu:</p>
                                                 <p className="data-p">{raceDate}</p>
+                                            </div>
+                                            <hr />
+                                        </ListGroup.Item>
+                                        <ListGroup.Item className="user-data-list-item">
+                                            <div className="data-item">
+                                                <p className="header-p">Magiczna mila:</p>
+                                                <p className="data-p">{mmTime}</p>
                                             </div>
                                             <hr />
                                         </ListGroup.Item>

@@ -1,0 +1,12 @@
+.early-alert
+{
+    width: 18rem;
+    height: 15rem;
+    font-size: 1rem;
+}
+
+#alert-icon
+{
+    color: yellow;
+    cursor: pointer;
+}
