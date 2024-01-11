@@ -1,11 +1,19 @@
 @import "../style/Style.css";
 
-.stats-content
+.stats-block
 {
-    height: 91.5vh;
-
     display: flex;
     justify-content: center;
+}
+
+.stats-content
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 70%;
+    margin: auto;
 }
 
 .stats-content .container
@@ -13,9 +21,29 @@
     margin: auto;
 }
 
+.stats-container .empty-block
+{
+    background-color: black;
+    min-height: 400px;
+    height: 50vh;
+}
+
+.stats-container .stats-block
+{
+    min-height: 400px;
+    height: 50vh;
+}
+
+.stats-container .progress-bars-block
+{
+    min-height: 400px;
+    height: 50vh;
+}
+
 .h2-style
 {
     color: white;
+    font-size: 1.5rem;
 }
 
 .p-style
@@ -28,9 +56,103 @@
 {
     display: flex;
     text-align: center;
+    font-size: 2.5rem;
 }
 
 .stats-data
 {
     margin: auto;
+}
+
+.check-icon
+{
+    font-size: 2rem;
+    color: green;
+}
+
+.check-icons
+{
+    font-size: 2rem;
+}
+
+/* progress bar */
+.progress-bars-block
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.progress-bars-block .stats-progress-bar-style
+{
+    height: 5vh;
+}
+
+.stats-progress-bar-container
+{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
+@media (max-width: 1200px) {
+    .stats-content .container .row
+    {
+        flex-direction: column;
+    }
+
+    .stats-col-style
+    {
+        margin: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .stats-col-style 
+    {
+      font-size: 1.5rem;
+    }
+
+    .h2-style
+    {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-col-style 
+    {
+      font-size: 1.2rem;
+    }
+
+    .h2-style
+    {
+        font-size: 0.7rem;
+    }
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 420px) {
+    .exercises-content
+    {
+        margin-top: 40px;
+    }
+
+    .empty-block
+    {
+        display: none;
+    }
+
+    .stats-col-style 
+    {
+      font-size: 1.5rem;
+    }
+
+    .h2-style
+    {
+        font-size: 1rem;
+    }
 }

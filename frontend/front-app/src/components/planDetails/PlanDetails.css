@@ -1,0 +1,57 @@
+@import "../style/Style.css";
+
+.plan-details-content
+{
+    margin-top: 200px;
+    display: flex;
+    text-align: center;
+}
+
+.plan-details-content .container-lg
+{
+    width: 40%;
+}
+
+.plan-details-row
+{
+    height: auto;
+}
+
+
+@media (max-width: 1200px)
+{
+    .plan-details-content
+    {
+        margin-top: 20px;
+    }
+
+    .user-data-list-item .data-item
+    {
+        flex-direction: column;
+    }
+
+    .user-data-list-item .data-item .header-p
+    {
+        margin: auto;
+        font-size: 1.5rem;
+    }
+
+    .user-data-list-item .data-item .data-p
+    {
+        margin: auto;
+        font-size: 1.5rem;
+    }
+
+    .plan-details-content .container-lg
+    {
+        width: 80%;
+    }
+
+}
+
+/* Media Query for mobile devices */
+@media only screen and (max-device-width: 420px)
+{
+ 
+
+}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @RestController
@@ -14,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/api/yourplan")
 public class YourPlanRestController {
     private YourPlanService yourPlanService;
-
 
     @Autowired
     public YourPlanRestController(YourPlanService yourPlanService) {
@@ -31,7 +31,15 @@ public class YourPlanRestController {
     private YourPlan create(@PathVariable("email") String email, @RequestBody AnswersResponse answersResponse){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //String yyyy-MM-dd to LocalDate
         LocalDate formattedDate = LocalDate.parse(answersResponse.getRaceDate(), formatter);
-        return yourPlanService.create(email ,answersResponse, formattedDate);
+
+        String mmss = answersResponse.getMmTime();
+
+        int minutes = Integer.parseInt(mmss.substring(0, 2));
+        int seconds = Integer.parseInt(mmss.substring(3, 5));
+
+        LocalTime mmTime = LocalTime.of(0, minutes, seconds);
+
+        return yourPlanService.create(email ,answersResponse, formattedDate, mmTime);
     }
 
     @DeleteMapping("/remove/{id}")

@@ -1,0 +1,118 @@
+@import "../style/Style.css";
+
+.profile-content
+{
+    margin-top: 200px;
+    display: flex;
+    text-align: center;
+}
+
+.profile-icon
+{
+    background-color: red;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 100px;
+}
+
+.user-icon
+{
+    font-size: 5rem;
+    color: #FF6666;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.user-data-list .user-data-list-item
+{
+    background: none;
+    border: none;
+    margin: 15px;
+}
+
+.data-item
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.data-item .header-p
+{
+    color: red;
+    font-size: 2rem;
+    margin: 0px;
+}
+
+.data-item .data-p
+{
+    font-size: 2rem;
+    margin: auto;
+    margin-right: 0px;
+}
+
+hr
+{
+    margin-top: 0px !important;
+}
+
+.profile-content .container-lg
+{
+    width: 40%;
+}
+
+.profile-content .full-width
+{
+    width: 100%;
+}
+
+/* Media Query for mobile devices */
+@media only screen and (max-device-width: 420px)
+{
+
+    .profile-content .container-lg
+    {
+        width: 80%;
+    }
+
+    .profile-content
+    {
+        margin-top: 100px;
+    }
+
+    .profile-icon
+    {
+        width: 150px;
+        height: 150px;
+    }
+
+    .user-icon
+    {
+        font-size: 3rem;
+    }
+    
+    .data-item
+    {
+        flex-direction: column;
+    }
+
+    .data-item .header-p
+    {
+        margin: auto;
+        font-size: 1.7rem;
+    }
+
+    .data-item .data-p
+    {
+        margin: auto;
+    }
+}

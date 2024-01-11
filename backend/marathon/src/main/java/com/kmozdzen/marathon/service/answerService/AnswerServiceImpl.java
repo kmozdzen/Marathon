@@ -50,4 +50,16 @@ public class AnswerServiceImpl implements AnswerService{
         user.setAnswers(userAnswers);
         return userAnswers;
     }
+
+    @Override
+    @Transactional
+    public void clearUserAnswers(User user) {
+        for (Answer answer: user.getAnswers()) {
+            answer.getUser().remove(user);
+            answerRepository.save(answer);
+        }
+        user.getAnswers().clear();
+
+        userRepository.save(user);
+    }
 }

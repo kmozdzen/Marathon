@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/user")
 public class UserRestController {
     private UserService userService;
@@ -39,5 +40,10 @@ public class UserRestController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable("id") int id){
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/get-user-answers/{email}")
+    public List<String> getUserAnswers(@PathVariable("email") String email){
+        return userService.getUserAnswers(email);
     }
 }

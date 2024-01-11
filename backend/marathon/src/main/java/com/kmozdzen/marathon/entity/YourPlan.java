@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,9 @@ public class YourPlan {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "mm_time")
+    private LocalTime mmTime;
 
     @Column(name = "race_date")
     private LocalDate raceDate;

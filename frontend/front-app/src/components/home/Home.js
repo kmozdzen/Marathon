@@ -22,22 +22,28 @@ const Home = () => {
     }
 
     return(
-        <div>
+            <div>
             <div className="base-container">
-                {/* <HomeHeader /> */}
-                <div className="home-container">
-                    <div className="left-side">
-                    
-                    </div>
-                    <div className="right-side">
-                        <h1>MarathonPro</h1>
-                        <h4 className="quote">"Pain is temporary. Quitting lasts forever." - Lance Armstrong</h4>
-                        <div className="buttons">
-                            <Button onClick={routeChangeToLogin} className="sign-in-button" variant="outline-light" size="lg">Zaloguj</Button>
-                            <Button onClick={routeChangeToRegister} variant="dark" size="lg">Rejestracja</Button>
-                        </div>
-                    </div>
-                </div>
+                <Container fluid="lg">
+                <Row className="home-container">
+                        <Col md={{ span: 6, offset: 6 }} className="home-content text-center">
+                            <Container fluid>
+                                    <Row>
+                                        <h1 className="brand-name">MarathonPro</h1>
+                                    </Row>
+                                    <Row>
+                                        <h4 className="quote">"Pain is temporary. Quitting lasts forever." - Lance Armstrong</h4>
+                                    </Row>
+                                    <Row>
+                                        <div className="buttons">
+                                            <Button onClick={routeChangeToLogin} className="sign-in-button" variant="outline-light" size="lg">Zaloguj</Button>
+                                            <Button onClick={routeChangeToRegister} variant="dark" size="lg">Rejestracja</Button>
+                                        </div>
+                                    </Row>
+                            </Container>
+                        </Col>
+                </Row>
+                </Container>
             </div>
             <Footer />
         </div>

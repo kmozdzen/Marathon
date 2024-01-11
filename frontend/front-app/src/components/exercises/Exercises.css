@@ -1,0 +1,30 @@
+@import "../style/Style.css";
+
+.exercises-container
+{
+    display: flex;
+    flex-direction: center;
+    min-height: 800px;
+    height: 100vh;
+    height: fit-content;
+}
+
+.exercises-content
+{
+    margin: auto;
+}
+
+.exercises-content .exercise-card-style
+{
+    margin: auto;
+    width: 18rem;
+    height: 18rem;
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 420px) {
+    .exercises-content
+    {
+        margin-top: 40px;
+    }
+}

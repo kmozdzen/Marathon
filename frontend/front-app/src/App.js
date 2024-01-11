@@ -8,6 +8,9 @@ import Stats from "./components/stats/Stats";
 import Questions from "./components/questions/Questions";
 import { ProtectedRoute } from './components/authentication/ProtectedRoute';
 import { IsPlan } from "./components/isPlan/IsPlan";
+import PlanDetails from "./components/planDetails/PlanDetails";
+import Profile from "./components/profile/Profile";
+import Friends from "./components/friends/Friends";
 
 function App() {
   return (
@@ -30,7 +33,7 @@ function App() {
                 element={
                             <ProtectedRoute>
                                 <IsPlan>
-                                    <YourPlan />
+                                    <YourPlan scrollStatus={{stats: false, exercises: false}}/>
                                 </IsPlan>
                             </ProtectedRoute>
                         }>
@@ -40,7 +43,47 @@ function App() {
                 element={
                             <ProtectedRoute>
                                 <IsPlan>
-                                    <Stats /> 
+                                    <YourPlan scrollStatus={{stats: true, exercises: false}} /> 
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
+            </Route>
+            <Route 
+                path="/plan-details" 
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <PlanDetails /> 
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
+            </Route>
+            <Route 
+                path="/profile" 
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <Profile /> 
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
+            </Route>
+            <Route 
+                path="/exercises" 
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <YourPlan scrollStatus={{stats: false, exercises: true}} />  
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
+            </Route>
+            <Route 
+                path="/friends" 
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <Friends /> 
                                 </IsPlan>
                             </ProtectedRoute>
                         }>

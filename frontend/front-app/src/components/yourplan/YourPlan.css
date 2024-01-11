@@ -1,5 +1,11 @@
 @import "../style/Style.css";
 
+.your-plan-container
+{
+    min-height: 1000px;
+    height: 100vh;
+}
+
 .calendar-container
 {
     display: flex;
@@ -18,7 +24,7 @@
 {    
     width: 500px;
     height: 700px;
-
+    min-width: 500px;
     margin: auto;
     margin-left: 10%;
     
@@ -76,7 +82,12 @@
 .carousel-caption-style .carousel-stats
 {
     margin: auto;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 .calendar-style .data-picker
 {
@@ -106,4 +117,161 @@
 {
     margin-top: 8px;
     margin-bottom: 0;
+}
+
+.check-icons svg:hover
+{
+    cursor: pointer;
+}
+
+.carousel-caption-style .check-icons 
+{
+    display: flex;
+    justify-content: center;
+}
+
+.info-overlay-wrapper {
+    width: 10%;
+    margin: 0;
+    margin-left: 90%;
+}
+
+.info-icon
+{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.my-info-icon
+{
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: green;
+}
+.pen-icon
+{
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.my-info-text
+{
+    font-size: 1.3rem;
+}
+
+.input-my-info
+{
+    margin-right: 0.5rem;
+}
+
+.input-my-info-panel
+{
+    display: flex;
+}
+
+.my-info-body
+{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 940px) {
+    .your-plan-container
+    {
+        min-height: 1500px;
+    }
+    
+    .calendar-container {
+        flex-direction: column;
+        min-height: 1400px;
+    }
+
+    .carousel-style {
+        width: 70%;
+        margin: auto;
+    }
+
+    .carousel-style .carousel-image-style {
+        width: 100%;
+        height: auto;
+    }
+
+
+    .calendar-panel
+    {
+        margin: auto;
+        margin-bottom: 0px;
+    }
+    
+
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 420px) {
+    .your-plan-container
+    {
+        min-height: 1400px;
+    }
+    
+    
+    .calendar-container {
+        min-height: 1300px;
+    }
+    
+    .carousel-style {
+        width: 100%;
+        min-width: 200px;
+        min-height: 700px;
+        height: 80vh;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .carousel-style .carousel-image-style {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-caption-style .check-icons {
+        display: flex;
+        justify-content: center;
+    }
+
+    .carousel-inner
+    {
+        min-height: 700px;
+        height: 80vh;
+        background-color: white;
+        border-radius: 30px;
+        position: relative;
+    }
+
+    .carousel-style .carousel-caption-style
+    {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-right: 27%;
+        
+    }
+    .carousel-caption-style .check-icons 
+    {
+        margin-top: 10px;
+    }
+
+    .carousel-caption-style .carousel-stats
+    {
+        margin: 10px;
+    }
+
+    .carousel-caption-style .check-icon
+    {
+        font-size: 2rem;
+    }
+
+    .run-name
+    {
+        margin: 0;
+    }
 }

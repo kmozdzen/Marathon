@@ -1,5 +1,6 @@
 package com.kmozdzen.marathon.service.userService;
 
+import com.kmozdzen.marathon.entity.Answer;
 import com.kmozdzen.marathon.entity.User;
 import com.kmozdzen.marathon.exception.UserNotFoundException;
 import com.kmozdzen.marathon.respository.UserRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,5 +64,28 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public List<String> getUserAnswers(String email) {
+        User user;
+        List<String> answers = new ArrayList<>();
+        int answersCount = 5;
+
+        user = userRepository.findByEmail(email);
+
+        if(user != null){
+            answers.add(user.getYourPlan().getName());
+            for (Answer answer: user.getAnswers()) {
+                answers.add(answer.getContent());
+            }
+            answers.add(user.getYourPlan().getRaceDate().toString());
+            answers.add(user.getYourPlan().getMmTime().toString());
+        }
+
+
+        if(answers.size() == answersCount)
+            return answers;
+
+        return null;
+    }
 
 }

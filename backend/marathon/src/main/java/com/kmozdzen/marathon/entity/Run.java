@@ -34,8 +34,17 @@ public class Run {
     @Column(name = "walk_time")
     private LocalTime walkTime;
 
+    @Column(name = "additional_info")
+    private String additionalInfo;
+
+    @Column(name = "my_info")
+    private String myInfo;
+
     @Column(name = "date")
     private LocalDate date;
+
+    @Column(name = "run_check")
+    private boolean runCheck;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
