@@ -3,6 +3,7 @@
 .your-plan-container
 {
     min-height: 1000px;
+    height: 100vh;
 }
 
 .calendar-container
@@ -141,16 +142,49 @@
     cursor: pointer;
 }
 
+.my-info-icon
+{
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: green;
+}
+.pen-icon
+{
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.my-info-text
+{
+    font-size: 1.3rem;
+}
+
+.input-my-info
+{
+    margin-right: 0.5rem;
+}
+
+.input-my-info-panel
+{
+    display: flex;
+}
+
+.my-info-body
+{
+    display: flex;
+    flex-direction: column;
+}
 
 @media (max-width: 940px) {
     .your-plan-container
     {
-        height: 200vh;
+        min-height: 1500px;
     }
     
     .calendar-container {
         flex-direction: column;
-        height: 190vh;
+        min-height: 1400px;
     }
 
     .carousel-style {
@@ -177,17 +211,18 @@
 @media (max-width: 420px) {
     .your-plan-container
     {
-        height: 150vh;
+        min-height: 1400px;
     }
     
+    
     .calendar-container {
-        flex-direction: column;
-        height: 140vh;
+        min-height: 1300px;
     }
-
+    
     .carousel-style {
         width: 100%;
         min-width: 200px;
+        min-height: 700px;
         height: 80vh;
         margin: auto;
         margin-top: 20px;
@@ -205,6 +240,7 @@
 
     .carousel-inner
     {
+        min-height: 700px;
         height: 80vh;
         background-color: white;
         border-radius: 30px;
@@ -213,13 +249,11 @@
 
     .carousel-style .carousel-caption-style
     {
-        position: absolute;
-        bottom: 0px;
-        left: 40%;
-        transform: translate(-50%, 0);
-        width: 100%;
-        height: 50%;
-
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-right: 27%;
+        
     }
     .carousel-caption-style .check-icons 
     {

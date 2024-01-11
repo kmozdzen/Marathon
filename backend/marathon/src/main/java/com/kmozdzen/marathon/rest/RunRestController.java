@@ -2,6 +2,7 @@ package com.kmozdzen.marathon.rest;
 
 import com.kmozdzen.marathon.entity.Run;
 import com.kmozdzen.marathon.response.CheckResponse;
+import com.kmozdzen.marathon.response.InfoResponse;
 import com.kmozdzen.marathon.service.runService.RunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,11 @@ public class RunRestController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //String yyyy-MM-dd to LocalDate
         LocalDate formattedDate = LocalDate.parse(date, formatter);
         return runService.getRunsByDate(email, formattedDate);
+    }
+
+    @PutMapping("/my-info/{idRun}")
+    public Run setMyInfo(@PathVariable("idRun") int idRun, @RequestBody InfoResponse infoResponse){
+        return runService.setMyInfo(idRun, infoResponse);
     }
 
     @GetMapping("/get-first-date/{email}")

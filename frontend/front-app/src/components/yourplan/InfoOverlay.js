@@ -9,13 +9,13 @@ const InfoOverlay = (props) => {
     <Popover id="popover-basic">
       <Popover.Header as="h3">{props.name}</Popover.Header>
       <Popover.Body>
-        Bieg przy wykorzystaniu metody Gallowaya
+        {props.text}
       </Popover.Body>
     </Popover>
   );
 
   return (
-    <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+    <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
        <FontAwesomeIcon className="info-icon" icon={faCircleInfo}/>
     </OverlayTrigger>
   );

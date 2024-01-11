@@ -153,7 +153,6 @@ public class Galloway {
         }
         return Arrays.asList(runTimeInRunWalk, walkTimeInRunWalk);
     }
-
     public void create(AnswersResponse answersResponse, LocalDate date, LocalTime mmTime){ //magic mile time
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
         float longRun = 5; //long run distance
@@ -170,21 +169,26 @@ public class Galloway {
         float lastRunBeforeMarathon = 0.0F;
         float raceConverter = 0.0F;
 
-        switch (answersResponse.getAnswers().get(0)){
+        String additionalInfo = "";
+        String mmAdditionalInfo = "W tym dodatkowo wykonaj bieg magicznej mili";
+        String lastRunAdditionalInfo = "W tym dniu możesz przebiec 19-32km";
+
+        String experience = answersResponse.getAnswers().get(0);
+        String goal = answersResponse.getAnswers().get(1);
+
+        //experience level
+        switch (experience){
             case "początkujący":
-                System.out.println("beg");
                 walkTime = LocalTime.of(0,30,0);
                 runWalkTime = LocalTime.of(0,30,0);
                 lastRunBeforeMarathon = 19.0F;
                 break;
             case "średniozaawansowany":
-                System.out.println("int");
                 walkTime = LocalTime.of(0,45,0);
                 runWalkTime = LocalTime.of(0,45,0);
                 lastRunBeforeMarathon = 25.5F;
                 break;
             case "zaawansowany":
-                System.out.println("adv");
                 walkTime = LocalTime.of(1,0,0);
                 runWalkTime = LocalTime.of(1,0,0);
                 lastRunBeforeMarathon = 32.0F;
@@ -193,8 +197,8 @@ public class Galloway {
                 System.out.println("brak");
         }
 
-        // TODO: 09.11.2023 pace
-        switch (answersResponse.getAnswers().get(1)){
+        //race distance by type of race
+        switch (goal){
             case "maraton":
                 System.out.println("marathon");
                 raceConverter = 1.3f;
@@ -246,8 +250,12 @@ public class Galloway {
                 LocalTime pace = trainingPace;
                 float finalLongRun = 0;
                 String name = "Długi bieg";
+                additionalInfo = "";
+
+                //last 6 weeks
                 if(weeksCounter >= (weeks - 1)){
                     finalLongRun = lastRunBeforeMarathon;
+                    additionalInfo = lastRunAdditionalInfo;
                 } else if (weeksCounter >= (weeks - 2)) {
                     finalLongRun = 10.0F;
                 } else if (weeksCounter >= (weeks - 3)) {
@@ -259,6 +267,7 @@ public class Galloway {
                 } else if ((weeksCounter >= (weeks - 6))) {
                     finalLongRun = 10.0F;
                 }
+                //to 6 weeks before end
                 else {
                     if(longRun > endDistance){
                         finalLongRun = endDistance;
@@ -268,20 +277,28 @@ public class Galloway {
                                 deloadLongRun = 6.5F;
                             else if(weeksCounter > 2)
                                 deloadLongRun = 10F;
+
                             finalLongRun = deloadLongRun;
+
+                            if(weeksCounter >= weeks/2){
+                                additionalInfo = mmAdditionalInfo; //magic mile info
+                            }
                         } else {
                             finalLongRun = longRun;
                         }
                     }
                 }
+
                String finalName = name;
                float finalFinalLongRun = finalLongRun;
                LocalTime finalPace = pace;
+               String finalAdditionalInfo = additionalInfo;
                race.put(d, new HashMap<>() {
                     {
                         put("name", finalName);
                         put("distance", finalFinalLongRun); // reducing to 1 decimal place
                         put("pace", finalPace);
+                        put("additionalInfo", finalAdditionalInfo);
                     }
                 });
                 if(weeksCounter % 2 != 0)
@@ -297,10 +314,11 @@ public class Galloway {
             }
         }
 
-//        for (Map.Entry<LocalDate, Map<String,Object>> run : race.entrySet()){
-//            //if(run.getKey().getDayOfWeek() == DayOfWeek.SUNDAY)
-//                System.out.println(run.getKey() + "-> " + run.getValue());
-//        }
+        System.out.println(weeks);
+        for (Map.Entry<LocalDate, Map<String,Object>> run : race.entrySet()){
+            if(run.getKey().getDayOfWeek() == DayOfWeek.SUNDAY)
+                System.out.println(run.getKey() + "-> " + run.getValue());
+        }
 
     }
 }

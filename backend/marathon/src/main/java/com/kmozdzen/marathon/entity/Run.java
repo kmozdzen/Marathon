@@ -34,6 +34,12 @@ public class Run {
     @Column(name = "walk_time")
     private LocalTime walkTime;
 
+    @Column(name = "additional_info")
+    private String additionalInfo;
+
+    @Column(name = "my_info")
+    private String myInfo;
+
     @Column(name = "date")
     private LocalDate date;
 

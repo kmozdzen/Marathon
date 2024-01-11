@@ -2,6 +2,7 @@ package com.kmozdzen.marathon.service.runService;
 
 import com.kmozdzen.marathon.entity.Run;
 import com.kmozdzen.marathon.middleware.Week;
+import com.kmozdzen.marathon.response.InfoResponse;
 import com.kmozdzen.marathon.respository.RunRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -133,6 +134,16 @@ public class RunServiceImpl implements RunService{
         }catch (Exception ex){
             return 0;
         }
+    }
+
+    @Override
+    public Run setMyInfo(int idRun, InfoResponse infoResponse) {
+        Run run = runRepository.findById(idRun).orElseThrow(null);
+        if(run != null){
+            run.setMyInfo(infoResponse.getMyInfo());
+        }
+
+        return runRepository.save(run);
     }
 
 }

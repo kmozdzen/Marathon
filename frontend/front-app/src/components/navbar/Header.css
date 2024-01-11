@@ -40,6 +40,11 @@
     background-color: transparent !important;
 }
 
+.add-pointer
+{
+    cursor: pointer;
+}
+
 @media (max-width: 420px) 
 {
     .navbar-nav a, .navbar-nav .dropdown

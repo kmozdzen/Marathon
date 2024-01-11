@@ -19,6 +19,7 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import Exercises from "../exercises/Exercieses";
 import InfoOverlay from "./InfoOverlay";
+import MyInfoOverlay from "./MyInfoOverlay";
 
 
 
@@ -34,7 +35,7 @@ const YourPlan = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8080/api/run/current-days/' + localStorage.getItem("email"))
           .then((res) => {
-                //console.log(res.data)
+                console.log(res.data)
                 setRunDays(res.data)    
           })
           .catch(error => {
@@ -189,9 +190,16 @@ const YourPlan = (props) => {
                                 />
                                 <Carousel.Caption className="carousel-caption-style">
                                     <h5>{run.date}</h5>
-                                    <div className="info-overlay-wrapper">
-                                        <InfoOverlay name={run.name}/>
-                                    </div>
+                                        {run.additionalInfo !== null ?
+                                            <div className="info-overlay-wrapper">
+                                                <InfoOverlay name={run.name} text={run.additionalInfo}/>
+                                            </div>
+                                        :
+                                            null
+                                        }
+                                        <div className="info-overlay-wrapper">
+                                            <MyInfoOverlay idRun={run.idRun} text={run.myInfo}/>
+                                        </div>
                                     {(() => {
                                         if(run.name === "Długi bieg") {
                                             return <div className="carousel-stats">

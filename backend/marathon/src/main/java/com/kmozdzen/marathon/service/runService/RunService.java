@@ -1,6 +1,7 @@
 package com.kmozdzen.marathon.service.runService;
 
 import com.kmozdzen.marathon.entity.Run;
+import com.kmozdzen.marathon.response.InfoResponse;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,4 +32,6 @@ public interface RunService {
     long getTotalWalkRunTime(int id);
 
     long getTotalWalkTime(int id);
+
+    Run setMyInfo(int idRun, InfoResponse infoResponse);
 }

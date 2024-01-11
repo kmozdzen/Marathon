@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 public class YourPlanRestController {
     private YourPlanService yourPlanService;
 
-
     @Autowired
     public YourPlanRestController(YourPlanService yourPlanService) {
         this.yourPlanService = yourPlanService;

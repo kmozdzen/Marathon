@@ -14,6 +14,9 @@ import YourPlan from "../yourplan/YourPlan";
 import { IsPlan } from "../isPlan/IsPlan";
 import Footer from "../footer/Footer";
 
+import {over} from 'stompjs';
+import SockJS from 'sockjs-client';
+
 const Register = () =>{
     const [validated, setValidated] = useState(false);
     const [email, setEmail] = useState("");
@@ -21,6 +24,7 @@ const Register = () =>{
     const [noEmail, setNoEmail] = useState(false);
     const [error, setError] = useState(false);
     const navigate = useNavigate();
+
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -50,6 +54,7 @@ const Register = () =>{
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('name', res.data.name);
                 localStorage.setItem('id', res.data.id);
+                localStorage.setItem("connected", false);
                 navigate("/yourplan")
              }
              if(res.data.message === "Email not exits")

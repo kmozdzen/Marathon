@@ -93,6 +93,12 @@ public class YourPlanServiceImpl implements YourPlanService{
                     run.setTime(time);
                 }
 
+                if(runDate.getValue().get("additionalInfo") != null){
+                    String additionalInfo = (String) runDate.getValue().get("additionalInfo");
+                    if(additionalInfo != "")
+                        run.setAdditionalInfo(additionalInfo);
+                }
+
                 run.setRunCheck(false);
                 run.setYourPlan(yourPlan);
                 runRepository.save(run);

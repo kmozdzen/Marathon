@@ -1,11 +1,19 @@
 @import "../style/Style.css";
 
+.stats-block
+{
+    display: flex;
+    justify-content: center;
+}
+
 .stats-content
 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 70%;
+    width: 70%;
+    margin: auto;
 }
 
 .stats-content .container
@@ -16,22 +24,26 @@
 .stats-container .empty-block
 {
     background-color: black;
+    min-height: 400px;
     height: 50vh;
 }
 
 .stats-container .stats-block
 {
+    min-height: 400px;
     height: 50vh;
 }
 
 .stats-container .progress-bars-block
 {
+    min-height: 400px;
     height: 50vh;
 }
 
 .h2-style
 {
     color: white;
+    font-size: 1.5rem;
 }
 
 .p-style
@@ -44,7 +56,7 @@
 {
     display: flex;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .stats-data
@@ -85,6 +97,7 @@
     text-align: center;
 }
 
+
 @media (max-width: 1200px) {
     .stats-content .container .row
     {
@@ -112,11 +125,34 @@
 @media (max-width: 576px) {
     .stats-col-style 
     {
-      font-size: 1.9rem;
+      font-size: 1.2rem;
     }
 
     .h2-style
     {
-        font-size: 1.4rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 420px) {
+    .exercises-content
+    {
+        margin-top: 40px;
+    }
+
+    .empty-block
+    {
+        display: none;
+    }
+
+    .stats-col-style 
+    {
+      font-size: 1.5rem;
+    }
+
+    .h2-style
+    {
+        font-size: 1rem;
     }
 }

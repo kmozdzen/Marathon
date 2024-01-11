@@ -10,6 +10,7 @@ import { ProtectedRoute } from './components/authentication/ProtectedRoute';
 import { IsPlan } from "./components/isPlan/IsPlan";
 import PlanDetails from "./components/planDetails/PlanDetails";
 import Profile from "./components/profile/Profile";
+import Friends from "./components/friends/Friends";
 
 function App() {
   return (
@@ -73,6 +74,16 @@ function App() {
                             <ProtectedRoute>
                                 <IsPlan>
                                     <YourPlan scrollStatus={{stats: false, exercises: true}} />  
+                                </IsPlan>
+                            </ProtectedRoute>
+                        }>
+            </Route>
+            <Route 
+                path="/friends" 
+                element={
+                            <ProtectedRoute>
+                                <IsPlan>
+                                    <Friends /> 
                                 </IsPlan>
                             </ProtectedRoute>
                         }>

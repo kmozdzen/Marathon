@@ -1,5 +1,5 @@
 import "./Header.css"
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -9,13 +9,14 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons'
 
 import axios from 'axios';
 
 import { useNavigate } from "react-router-dom";
+import FriendsOffCanvas from "./FriendsOffCanvas";
 
 const Header = ({ statsContainerRef, exercisesContainerRef  }) => {
-    
     const navigate = useNavigate();
 
     const handlePlanDetailsClick = () => {
@@ -70,14 +71,17 @@ const Header = ({ statsContainerRef, exercisesContainerRef  }) => {
                     <Nav.Link onClick={scrollToExercisesContainer} className="nav-link-header-style">Ćwiczenia</Nav.Link>
                 </Nav>
                 <Nav>
+                    <FriendsOffCanvas />
+                </Nav>
+                <Nav>
                     <Dropdown align="end">
                         <Dropdown.Toggle id="dropdown-settings">
                             <FontAwesomeIcon className="settings-icon-style" icon={faGear}/>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#" onClick={handleProfileClick}>Profile</Dropdown.Item>
-                            <Dropdown.Item href="#" onClick={handlePlanDetailsClick}>Plan details</Dropdown.Item>
+                            <Dropdown.Item href="#" onClick={handleProfileClick}>Profil</Dropdown.Item>
+                            <Dropdown.Item href="#" onClick={handlePlanDetailsClick}>Detale planu</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Nav>
